@@ -1,0 +1,15 @@
+{
+  "name": "dropdown-component",
+  "description": "Dropdown component",
+  "version": "0.0.1",
+  "keywords": ["dropdown", "component"],
+  "dependencies": {
+    "menu-component": "*"
+  },
+  "component": {
+    "styles": ["dropdown.css"],
+    "scripts": {
+      "menu": "dropdown.js"
+    }
+  }
+}
