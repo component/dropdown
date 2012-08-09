@@ -28,15 +28,23 @@ module.exports = Dropdown;
  * @api public
  */
 
-function Dropdown(ref) {
-  if (!(this instanceof Dropdown)) return new Dropdown(ref);
+function Dropdown(ref, opts) {
+  if (!(this instanceof Dropdown)) return new Dropdown(ref, opts);
+
+  this.options = opts || {};
+
   Menu.call(this, this.dropdown);
 
   // add `dropdown` css class
   this.el.addClass('dropdown');
 
+  // add options
+  this.options.items = this.options.items || [];
+  if (this.options.items.length) this.addItems();
+
   this.ref = o(ref);
   this.ref.click(this.click.bind(this));
+
 };
 
 /**
@@ -58,3 +66,14 @@ Dropdown.prototype.click = function(ev){
   this.moveTo(ev.pageX, ev.pageY);
   this.show();
 };
+
+/**
+ * Add items into dropdown menu
+ */
+
+Dropdown.prototype.addItems = function(){
+  for (var i = 0; i < this.options.items.length; i++) {
+    var item = this.options.items[i];
+    this.add(item[0], item[1]);
+  };i
+}
