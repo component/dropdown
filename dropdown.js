@@ -35,16 +35,20 @@ function Dropdown(ref, opts) {
 
   Menu.call(this, this.dropdown);
 
+  // reference element
+  this.ref = o(ref);
+
   // add `dropdown` css class
   this.el.addClass('dropdown');
 
   // add options
   this.options.items = this.options.items || [];
-  if (this.options.items.length) this.addItems();
+  if (this.options.items.length) {
+    this.addItems();
+    this.focus(this.options.select || this.options.items[0][0]);
+  }
 
-  this.ref = o(ref);
   this.ref.click(this.click.bind(this));
-
 };
 
 /**
@@ -69,11 +73,20 @@ Dropdown.prototype.click = function(ev){
 
 /**
  * Add items into dropdown menu
+ *
+ * @api private
  */
 
 Dropdown.prototype.addItems = function(){
   for (var i = 0; i < this.options.items.length; i++) {
     var item = this.options.items[i];
     this.add(item[0], item[1]);
-  };i
+  };
 }
+
+/**
+ * Focus an item
+ */
+Dropdown.prototype.focus = function (itemid) {
+  this.ref.html(o(this.items[itemid]).find('a').html());
+};
