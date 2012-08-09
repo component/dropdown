@@ -8,36 +8,20 @@
   <body>
     <h2>Dropdown</h2>
     <p>Click <a id="dropdown" href="#">here</a> to open the dropdown.</p>
+    <p>Items <div class="dropdown" id="dropdown-menu"></div></p>
 
     <script src="out.js"></script>
     <script>
       var Dropdown = require('dropdown');
 
-      dropdown = Dropdown('#dropdown');
-
-      dropdown
-      .add('add-item', 'Add <em>item</em>')
-      .add('Edit item', function(){ console.log('edit'); })
-      .add('Remove item', function(){ console.log('remove'); })
-      .add('Remove "Add item"', function(){
-        dropdown.remove('add-item');
-        dropdown.remove('Remove "Add item"');
-      });
-
-      dropdown.on('select', function(item){
-        console.log('selected "%s"', item);
-      });
-
-      dropdown.on('Add item', function(){
-        console.log('added an item');
-      });
-
-      oncontextdropdown = function(e){
-        e.preventDefault();
-        dropdown.moveTo(e.pageX, e.pageY);
-        dropdown.show();
-      };
-
+      var dropdown = Dropdown('#dropdown')
+        .add('add-item', 'Add <em>item</em>')
+        .add('Edit item', function(){ console.log('edit'); })
+        .add('Remove item', function(){ console.log('remove'); })
+        .add('Remove "Add item"', function(){
+          dropdown.remove('add-item');
+          dropdown.remove('Remove "Add item"');
+        });
 
     </script>
   </body>
