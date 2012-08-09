@@ -29,6 +29,9 @@ module.exports = Dropdown;
 function Dropdown() {
   if (!(this instanceof Dropdown)) return new Dropdown;
   Menu.call(this, this.dropdown);
+
+  // add dropdown css class
+  this.el.addClass('dropdown');
 };
 
 /**
