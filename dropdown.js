@@ -15,6 +15,8 @@ module.exports = Dropdown;
 /**
  * Initialize a new `Dropdown`.
  *
+ * @param {String|Object} element reference
+ *
  * Emits:
  *
  *   - "show" when shown
@@ -26,12 +28,14 @@ module.exports = Dropdown;
  * @api public
  */
 
-function Dropdown() {
-  if (!(this instanceof Dropdown)) return new Dropdown;
+function Dropdown(ref) {
+  if (!(this instanceof Dropdown)) return new Dropdown(ref);
   Menu.call(this, this.dropdown);
 
-  // add dropdown css class
+  // add `dropdown` css class
   this.el.addClass('dropdown');
+
+  this.ref = o(ref);
 };
 
 /**
