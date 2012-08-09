@@ -36,6 +36,7 @@ function Dropdown(ref) {
   this.el.addClass('dropdown');
 
   this.ref = o(ref);
+  this.ref.click(this.click.bind(this));
 };
 
 /**
@@ -44,3 +45,16 @@ function Dropdown(ref) {
 
 Dropdown.prototype.__proto__ = Menu.prototype;
 
+/**
+ * Add click event to reference element
+ *
+ * @api private
+ */
+
+Dropdown.prototype.click = function(ev){
+  ev.preventDefault();
+  ev.stopPropagation();
+
+  this.moveTo(ev.pageX, ev.pageY);
+  this.show();
+};
