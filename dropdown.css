@@ -9,6 +9,11 @@
   background-color: #f1faff;
 }
 
+ul.dropdowni li.current,
+ul.dropdown-menu li.current {
+  background-color: #eee;
+}
+
 ul.menu.dropdown-menu {
   margin-top: -1px;
 }
