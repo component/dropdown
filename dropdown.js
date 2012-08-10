@@ -49,6 +49,7 @@ function Dropdown(ref, opts) {
   }
 
   this.ref.click(this.click.bind(this));
+  this.on('select', this.focus.bind(this));
 };
 
 /**
@@ -98,5 +99,5 @@ Dropdown.prototype.addItems = function(){
  * Focus an item
  */
 Dropdown.prototype.focus = function (itemid) {
-  this.ref.html(o(this.items[itemid]).find('a').html());
+  if (this.options.menu) this.ref.html(o(this.items[itemid]).find('a').html());
 };
