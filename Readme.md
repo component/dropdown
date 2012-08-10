@@ -3,7 +3,8 @@
 
   Dropdown component with structural styling.
 
-  ![js dropdown component]()
+  ![js dropdown
+  component](http://f.cl.ly/items/010I1g3E2I3j2j2E3j0F/Screen%20Shot%202012-08-10%20at%2011.40.20%20AM.png)
 
 ## Installation
 
