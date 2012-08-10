@@ -66,7 +66,11 @@ var dropdown = Dropdown('.dropdown-link', {
         ['apple', '<em>Apple</em>', funcrion (){ console.log('It\'s an Apple!') }]
       , ['orange', '<strong style="color: #f86">orange</strong>']
       , ['banana', '<strong>Banana</strong>']
-      , ['strawberry', 'Strawberry']
+      , ['strawberry', function() {
+            console.log('remove the orange');
+            dropdown.remove('orange');
+          }
+        ]
     ]
   , select: 'banana'
 });
