@@ -93,9 +93,9 @@ Dropdown.prototype.addItems = function(){
 /**
  * Focus on item
  */
-Dropdown.prototype.focus = function (itemid) {
+Dropdown.prototype.focus = function (slug) {
   if (this.current) this.current.removeClass('current');
-  this.current = this.items[itemid].addClass('current');
+  this.current = this.items[slug].addClass('current');
 
-  if (this.options.menu) this.ref.html(o(this.items[itemid]).find('a').html());
+  if (this.options.menu) this.ref.html(o(this.items[slug]).find('a').html());
 };
