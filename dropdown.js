@@ -96,7 +96,7 @@ Dropdown.prototype.addItems = function(){
 }
 
 /**
- * Focus an item
+ * Focus on item
  */
 Dropdown.prototype.focus = function (itemid) {
   if (this.options.menu) this.ref.html(o(this.items[itemid]).find('a').html());

@@ -7,7 +7,7 @@
   </head>
   <body>
     <h2>Dropdown</h2>
-    <p>Click <a id="dropdown" href="#">here</a> to open the dropdown. Fruits <span class="dropdown"></span></p>
+    <p>Click <a id="dropdown" href="#">here</a> to open a dropdown. This is a menu dropdown: <span class="dropdown"></span></p>
 
     <script src="out.js"></script>
     <script>
@@ -25,12 +25,16 @@
       var dropdownMenu = Dropdown('.dropdown', {
           menu: true
         , items: [
-              ['apple', 'Apple']
-            , ['orange', 'the <strong style="color: #f86">orange</strong> is orange']
-            , ['banana', 'Banana']
+              ['apple', '<em>Apple</em>']
+            , ['orange', '<strong style="color: #f86">orange</strong>']
+            , ['banana', '<strong>Banana</strong>']
             , ['strawberry', 'Strawberry']
           ]
         , select: 'banana'
+      });
+
+      dropdownMenu.on('select', function(item) {
+        console.log('select -> ', item);
       });
 
     </script>
