@@ -16,14 +16,11 @@ module.exports = Dropdown;
  * Initialize a new `Dropdown`.
  *
  * @param {String|Object} element reference
+ * @param {Object} options:
  *
- * Emits:
- *
- *   - "show" when shown
- *   - "hide" when hidden
- *   - "remove" with the item name when an item is removed
- *   - "select" (item) when an item is selected
- *   - * dropdown item events are emitted when clicked
+ *   - items:  {Object} array of the initial items
+ *   - menu:   {Boolean} menu mode. Default true.
+ *   - select: {String} initial item_id select into dropdown
  *
  * @api public
  */
@@ -71,11 +68,9 @@ Dropdown.prototype.click = function(ev){
 
   if (this.options.menu) {
     var p = this.ref.position();
-    coors.x = p.left;
-    coors.y = p.top + this.ref.outerHeight();
+    coors = { x: p.left, y: p.top + this.ref.outerHeight() };
   } else {
-    coors.x = ev.pageX;
-    coors.y = ev.pageY;
+    coors = { x: ev.pageX, y: ev.pageY };
   }
 
   this.moveTo(coors.x, coors.y);
