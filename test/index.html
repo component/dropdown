@@ -7,7 +7,7 @@
   </head>
   <body>
     <h2>Dropdown</h2>
-    <p>Click <a id="dropdown" href="#">here</a> to open a dropdown. This is a menu dropdown: <span class="dropdown"></span></p>
+    <p>Click <a id="dropdown" href="#">here</a> to open a dropdown. This is a menu dropdown: <span class="dropdown-link"></span></p>
 
     <script src="out.js"></script>
     <script>
@@ -22,7 +22,7 @@
           dropdown.remove('Remove "Add item"');
         });
 
-      var dropdownMenu = Dropdown('.dropdown', {
+      var dropdownMenu = Dropdown('.dropdown-link', {
           menu: true
         , items: [
               ['apple', '<em>Apple</em>']

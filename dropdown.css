@@ -1,11 +1,11 @@
-.dropdown {
+.dropdown-link {
   padding: 5px 30px 5px 12px;
   border: 1px solid rgba(0,0,0,0.2);
   display: inline-block;
   cursor: pointer
 }
 
-.dropdown:hover {
+.dropdown-link:hover {
   background-color: #f1faff;
 }
 
