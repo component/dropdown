@@ -64,7 +64,7 @@ var Dropdown = require('dropdown');
 var dropdown = Dropdown('.dropdown-link', {
     menu: true
   , items: [
-        ['apple', '<em>Apple</em>', funcrion (){ console.log('It's an Apple!') }]
+        ['apple', '<em>Apple</em>', funcrion (){ console.log('It\'s an Apple!') }]
       , ['orange', '<strong style="color: #f86">orange</strong>']
       , ['banana', '<strong>Banana</strong>']
       , ['strawberry', 'Strawberry']

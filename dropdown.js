@@ -86,7 +86,7 @@ Dropdown.prototype.click = function(ev){
 Dropdown.prototype.addItems = function(){
   for (var i = 0; i < this.options.items.length; i++) {
     var item = this.options.items[i];
-    this.add(item[0], item[1]);
+    this.add(item[0], item[1], item[2]);
   };
 }
 

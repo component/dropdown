@@ -14,7 +14,7 @@
       var Dropdown = require('dropdown');
 
       var dropdown = Dropdown('#dropdown')
-        .add('add-item', 'Add <em>item</em>')
+        .add('add-item', 'Add <em>item</em>', function(){ console.log('SEE1') })
         .add('Edit item', function(){ console.log('edit'); })
         .add('Remove item', function(){ console.log('remove'); })
         .add('Remove "Add item"', function(){
@@ -25,10 +25,14 @@
       var dropdownMenu = Dropdown('.dropdown-link', {
           menu: true
         , items: [
-              ['apple', '<em>Apple</em>']
+              ['apple', '<em>Apple</em>', function(){console.log('It\'s an Apple !!') }]
             , ['orange', '<strong style="color: #f86">orange</strong>']
-            , ['banana', '<strong>Banana</strong>']
-            , ['strawberry', 'Strawberry']
+            , ['banana']
+            , ['strawberry', function() {
+                  console.log('remove the orange');
+                  dropdownMenu.remove('orange');
+                }
+              ]
           ]
         , select: 'banana'
       });
