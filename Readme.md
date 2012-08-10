@@ -14,6 +14,8 @@ $ npm install dropdown-component
 
 ## Features
 
+  It inherits all properties of [Menu component](www.github.com/component/menu)
+
   - events for composition
   - structural CSS letting you decide on style
   - fluent API
@@ -21,31 +23,70 @@ $ npm install dropdown-component
 
 ## Events
 
+  It inherits all events of [Menu component](www.github.com/component/menu). It
+  not added anymore.
+
 ## Dependencies
 
-  * dropdown-component
+  * menu-component
 
 ## Example
 
 ```js
 var Dropdown = require('dropdown');
 
-var dropdown = new Dropdown;
+var dropdown = new Dropdown('.fruits-dropdown');
 
-dropdown(selector);
+dropdown
+.add('Banana')
+.add('Apple', function(){ console.log('Apple selected'); })
+.add('Lemon', function(){ console.log('Lemon'); })
+.add('Remove "Apple"', function(){
+  dropdown.remove('Lemon');
+})
+.focus('Apple');
 
 ```
 
 ## API
   
-### Dropdown()
+### Dropdown(ref, options)
 
-  Create a new `Dropdown`:
+  Create a new `Dropdown` associated to `ref` element. Also support the follow
+  options:
+
+  - menu: {Boolean} value that defines if dropdown support menu behaviur.
+  - items: {Array} of initial items.
+  - select: {String} defines the focused item
 
 ```js
 var Dropdown = require('dropdown');
-var dropdown = new Dropdown();
-var dropdown = Dropdown();
+var dropdown = Dropdown('.dropdown-link', {
+    menu: true
+  , items: [
+        ['apple', '<em>Apple</em>', funcrion (){ console.log('It's an Apple!') }]
+      , ['orange', '<strong style="color: #f86">orange</strong>']
+      , ['banana', '<strong>Banana</strong>']
+      , ['strawberry', 'Strawberry']
+    ]
+  , select: 'banana'
+});
+```
+
+### Inherits methods:
+
+### Dropdown#add([slug], text, [fn])
+### Dropdown#remove(slug)
+### Dropdown#has(slug)
+### Dropdown#show()
+### Dropdown#hide()
+
+### Dropdown#focus(slug):
+
+  Focus dropdown with the item given.
+
+```js
+  dropdown.focus('banana');
 ```
 
 ## License
