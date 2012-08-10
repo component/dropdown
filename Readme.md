@@ -1,4 +1,3 @@
-
 # Dropdown
 
   Dropdown component with structural styling.
@@ -14,7 +13,7 @@ $ npm install dropdown-component
 
 ## Features
 
-  It inherits all properties of [Menu component](www.github.com/component/menu)
+  It inherits all properties of [Menu component](../component/menu)
 
   - events for composition
   - structural CSS letting you decide on style
@@ -23,7 +22,7 @@ $ npm install dropdown-component
 
 ## Events
 
-  It inherits all events of [Menu component](www.github.com/component/menu). It
+  It inherits all events of [Menu component](../component/menu). It
   not added anymore.
 
 ## Dependencies
