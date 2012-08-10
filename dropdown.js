@@ -38,8 +38,8 @@ function Dropdown(ref, opts) {
   // reference element
   this.ref = o(ref);
 
-  // add `dropdown` css class
-  this.el.addClass('dropdown');
+  // dropdown-menu mode
+  if (this.options.menu) this.el.addClass('dropdown-menu');
 
   // add options
   this.options.items = this.options.items || [];
@@ -66,8 +66,18 @@ Dropdown.prototype.__proto__ = Menu.prototype;
 Dropdown.prototype.click = function(ev){
   ev.preventDefault();
   ev.stopPropagation();
+  var coors = {};
 
-  this.moveTo(ev.pageX, ev.pageY);
+  if (this.options.menu) {
+    var p = this.ref.position();
+    coors.x = p.left;
+    coors.y = p.top + this.ref.outerHeight();
+  } else {
+    coors.x = ev.pageX;
+    coors.y = ev.pageY;
+  }
+
+  this.moveTo(coors.x, coors.y);
   this.show();
 };
 
