@@ -74,6 +74,7 @@ Dropdown.prototype.click = function(ev){
   }
 
   this.moveTo(coors.x, coors.y);
+  this.ref.addClass('opened');
   this.show();
 };
 
@@ -93,9 +94,11 @@ Dropdown.prototype.addItems = function(){
 /**
  * Focus on item
  */
+
 Dropdown.prototype.focus = function (slug) {
   if (this.current) this.current.removeClass('current');
   this.current = this.items[slug].addClass('current');
 
   if (this.options.menu) this.ref.html(o(this.items[slug]).find('a').html());
+  this.ref.removeClass('opened');
 };
