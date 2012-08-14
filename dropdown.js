@@ -33,7 +33,7 @@ function Dropdown(ref, opts) {
   Menu.call(this, this.dropdown);
 
   // reference element
-  this.ref = o(ref);
+  var ref = this.ref = o(ref);
 
   // dropdown-menu mode
   if (this.options.menu) this.el.addClass('dropdown-menu');
@@ -47,6 +47,9 @@ function Dropdown(ref, opts) {
 
   this.ref.click(this.click.bind(this));
   this.on('select', this.focus.bind(this));
+
+  this.on('show', function(){ ref.addClass('opened'); });
+  this.on('hide', function(){ ref.removeClass('opened'); });
 };
 
 /**
@@ -74,7 +77,6 @@ Dropdown.prototype.click = function(ev){
   }
 
   this.moveTo(coors.x, coors.y);
-  this.ref.addClass('opened');
   this.show();
 };
 
@@ -100,5 +102,4 @@ Dropdown.prototype.focus = function (slug) {
   this.current = this.items[slug].addClass('current');
 
   if (this.options.menu) this.ref.html(o(this.items[slug]).find('a').html());
-  this.ref.removeClass('opened');
 };
