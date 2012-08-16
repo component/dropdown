@@ -67,16 +67,16 @@ Dropdown.prototype.__proto__ = Menu.prototype;
 Dropdown.prototype.click = function(ev){
   ev.preventDefault();
   ev.stopPropagation();
-  var coors = {};
+  var x, y;
 
   if (this.options.menu) {
     var p = this.ref.position();
-    coors = { x: p.left, y: p.top + this.ref.outerHeight() };
+    x = p.left, y = p.top + this.ref.outerHeight();
   } else {
-    coors = { x: ev.pageX, y: ev.pageY };
+    x = ev.pageX, y = ev.pageY;
   }
 
-  this.moveTo(coors.x, coors.y);
+  this.moveTo(x, y);
   this.show();
 };
 
