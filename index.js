@@ -99,7 +99,9 @@ Dropdown.prototype.addItems = function(){
 
 Dropdown.prototype.focus = function (slug) {
   if (this.current) this.current.removeClass('current');
-  this.current = this.items[slug].addClass('current');
+  this.current = this.items[slug];
 
+  if(!this.current) throw new Error('Doesn\'t exists `' + slug + '` item.');
+  this.current.addClass('current');
   if (this.options.menu) this.ref.html(o(this.items[slug]).find('a').html());
 };
