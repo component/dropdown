@@ -1,8 +1,10 @@
+build: dropdown.css index.js components
+	@component build
 
-test/out.js: dropdown.js dropdown.css
-	component build package.json test/out
+components:
+	@component install
 
 clean:
-	rm -f test/out.{js,css}
+	rm -fr build components
 
 .PHONY: clean
