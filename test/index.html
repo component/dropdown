@@ -8,8 +8,8 @@
   <body>
     <h2>Dropdown</h2>
     <p>Click <a id="dropdown" href="#">here</a> to open a dropdown.</p>
-    <p>This is a dropdown menu: <span class="dropdown-link menu1"></span></p>
-    <p>Another no-selectable example: <span class="dropdown-link menu2">Select</span></p>
+    <p>This is a dropdown menu: <span class="dropdown-link menu1">Fruits</span></p>
+    <p>Another no-selectable example: <span class="dropdown-link menu2"><em>Select</em></span></p>
 
     <script src="../build/build.js"></script>
     <script>
@@ -26,7 +26,7 @@
         });
 
       // 2) dropdown menu
-      Dropdown('.menu1', {
+      var dropdownMenu = Dropdown('.menu1', {
           menu: true
         , items: [
               ['apple', '<em>Apple</em>', function(){ console.log('Apple !!') }]
@@ -38,7 +38,7 @@
                 }
               ]
           ]
-        , select: 'banana'
+        , noSelectable: false
       });
 
       dropdownMenu.on('select', function(item) {
