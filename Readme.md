@@ -57,6 +57,7 @@ dropdown
   - menu: {Boolean} value that defines if dropdown support menu behaviur.
   - items: {Array} of initial items.
   - select: {String} defines the focused item
+  - noSelectable: {Boolen} defines if dropdown is selectable (default false)
 
 ```js
 var Dropdown = require('dropdown');
