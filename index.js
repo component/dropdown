@@ -18,10 +18,10 @@ module.exports = Dropdown;
  * @param {String|Object} element reference
  * @param {Object} options:
  *
- *   - items:  {Object} array of the initial items.
- *   - menu:   {Boolean} menu mode (default: true).
- *   - select: {String} initial item_id select into dropdown.
- *   - noSelectable: {Boolen} defines if dropdown is selectable (default: false).
+ *   - items:  {Object} array of the initial items
+ *   - menu:   {Boolean} menu mode (default true)
+ *   - select: {String} initial item_id select into dropdown
+ *   - noSelectable: {Boolen} defines if dropdown is selectable (default false)
  *
  * @api public
  */
@@ -43,11 +43,13 @@ function Dropdown(ref, opts) {
   this.options.items = this.options.items || [];
 
   // non-selectable dropdown
-  this.noSelectable = this.options.noSelectable;
+  this.options.noSelectable = 'undefined' == typeof this.options.noSelectable
+                              ? this.ref.text().length
+                              : this.options.noSelectable;
 
   if (this.options.items.length) {
     this.addItems();
-    this.focus(this.options.select || this.options.items[0][0]);
+    if (this.options.select) this.focus(this.options.select);
   }
 
   this.ref.click(this.click.bind(this));
