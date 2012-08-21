@@ -3,15 +3,16 @@
   <head>
     <title>Dropdown component</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="out.css" />
+    <link rel="stylesheet" href="../build/build.css" />
   </head>
   <body>
     <h2>Dropdown</h2>
-    <p>Click <a id="dropdown" href="#">here</a> to open a dropdown. This is a dropdown menu: <span class="dropdown-link"></span></p>
+    <p>Click <a id="dropdown" href="#">here</a> to open a dropdown.</p>
+    <p>This is a dropdown menu: <span class="dropdown-link"></span></p>
 
-    <script src="out.js"></script>
+    <script src="../build/build.js"></script>
     <script>
-      var Dropdown = require('dropdown');
+      var Dropdown = require('dropdown/index.js');
 
       var dropdown = Dropdown('#dropdown')
         .add('add-item', 'Add <em>item</em>', function(){ console.log('SEE1') })
@@ -25,7 +26,7 @@
       var dropdownMenu = Dropdown('.dropdown-link', {
           menu: true
         , items: [
-              ['apple', '<em>Apple</em>', function(){console.log('It\'s an Apple !!') }]
+              ['apple', '<em>Apple</em>', function(){ console.log('It\'s an Apple !!') }]
             , ['orange', '<strong style="color: #f86">orange</strong>']
             , ['banana']
             , ['strawberry', function() {
@@ -43,4 +44,4 @@
 
     </script>
   </body>
-</html>
+</html> 

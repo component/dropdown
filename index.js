@@ -18,9 +18,10 @@ module.exports = Dropdown;
  * @param {String|Object} element reference
  * @param {Object} options:
  *
- *   - items:  {Object} array of the initial items
- *   - menu:   {Boolean} menu mode. Default true.
- *   - select: {String} initial item_id select into dropdown
+ *   - items:  {Object} array of the initial items.
+ *   - menu:   {Boolean} menu mode (default: true).
+ *   - select: {String} initial item_id select into dropdown.
+ *   - noSelectable: {Boolen} defines if dropdown is selectable (default: false).
  *
  * @api public
  */
@@ -40,6 +41,10 @@ function Dropdown(ref, opts) {
 
   // add options
   this.options.items = this.options.items || [];
+
+  // non-selectable dropdown
+  this.noSelectable = this.options.noSelectable;
+
   if (this.options.items.length) {
     this.addItems();
     this.focus(this.options.select || this.options.items[0][0]);
@@ -98,6 +103,8 @@ Dropdown.prototype.addItems = function(){
  */
 
 Dropdown.prototype.focus = function (slug) {
+  if (this.options.noSelectable) return;
+
   if (this.current) this.current.removeClass('current');
   this.current = this.items[slug];
 
