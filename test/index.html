@@ -8,13 +8,15 @@
   <body>
     <h2>Dropdown</h2>
     <p>Click <a id="dropdown" href="#">here</a> to open a dropdown.</p>
-    <p>This is a dropdown menu: <span class="dropdown-link"></span></p>
+    <p>This is a dropdown menu: <span class="dropdown-link menu1"></span></p>
+    <p>Another no-selectable example: <span class="dropdown-link menu2">Select</span></p>
 
     <script src="../build/build.js"></script>
     <script>
       var Dropdown = require('dropdown/index.js');
 
-      var dropdown = Dropdown('#dropdown')
+      // 1) simple dropdown
+      Dropdown('#dropdown')
         .add('add-item', 'Add <em>item</em>', function(){ console.log('SEE1') })
         .add('Edit item', function(){ console.log('edit'); })
         .add('Remove item', function(){ console.log('remove'); })
@@ -23,10 +25,11 @@
           dropdown.remove('Remove "Add item"');
         });
 
-      var dropdownMenu = Dropdown('.dropdown-link', {
+      // 2) dropdown menu
+      Dropdown('.menu1', {
           menu: true
         , items: [
-              ['apple', '<em>Apple</em>', function(){ console.log('It\'s an Apple !!') }]
+              ['apple', '<em>Apple</em>', function(){ console.log('Apple !!') }]
             , ['orange', '<strong style="color: #f86">orange</strong>']
             , ['banana']
             , ['strawberry', function() {
@@ -40,6 +43,17 @@
 
       dropdownMenu.on('select', function(item) {
         console.log('select -> ', item);
+      });
+
+      // 3) no selectable dropdown 
+      Dropdown('.menu2', {
+          items: [
+              ['car']
+            , ['trucks']
+            , ['areoplanes', function(slug){ console.log('Aero !!') }]
+          ]
+        , menu: true
+        , noSelectable: true
       });
 
     </script>
