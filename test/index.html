@@ -4,6 +4,17 @@
     <title>Dropdown component</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="../build/build.css" />
+    <style>
+      ul.custom-menu {
+        background-color: #333;
+        color: white;
+      }
+
+      ul.custom-menu li a {
+        color: #8cc;
+      }
+
+    </style>
   </head>
   <body>
     <h2>Dropdown</h2>
@@ -38,6 +49,7 @@
                 }
               ]
           ]
+        , css: 'custom-menu'
         , noSelectable: false
       });
 

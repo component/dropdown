@@ -39,6 +39,9 @@ function Dropdown(ref, opts) {
   // dropdown-menu mode
   if (this.options.menu) this.el.addClass('dropdown-menu');
 
+  // custom css class
+  if (this.options.css) this.el.addClass(this.options.css);
+
   // add options
   this.options.items = this.options.items || [];
 
