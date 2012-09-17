@@ -4,6 +4,7 @@
  */
 
 var Menu = require('menu')
+  , classes = require('classes')
   , o = require('jquery');
 
 /**
@@ -26,7 +27,7 @@ module.exports = Dropdown;
  * @api public
  */
 
-function Dropdown(ref, opts) {
+function Dropdown(ref, opts){
   if (!(this instanceof Dropdown)) return new Dropdown(ref, opts);
 
   this.options = opts || {};
@@ -37,10 +38,10 @@ function Dropdown(ref, opts) {
   var ref = this.ref = o(ref);
 
   // dropdown-menu mode
-  if (this.options.menu) this.el.addClass('dropdown-menu');
+  if (this.options.menu) classes(this.el[0]).add('dropdown-menu');
 
   // custom css class
-  if (this.options.css) this.el.addClass(this.options.css);
+  if (this.options.css) classes(this.el[0]).add(this.options.css);
 
   // add options
   this.options.items = this.options.items || [];
@@ -50,7 +51,7 @@ function Dropdown(ref, opts) {
                               ? this.ref.text().length
                               : this.options.noSelectable;
 
-  if (this.options.items.length) {
+  if (this.options.items.length){
     this.addItems();
     if (this.options.select) this.focus(this.options.select);
   }
@@ -58,9 +59,9 @@ function Dropdown(ref, opts) {
   this.ref.click(this.click.bind(this));
   this.on('select', this.focus.bind(this));
 
-  this.on('show', function(){ ref.addClass('opened'); });
-  this.on('hide', function(){ ref.removeClass('opened'); });
-};
+  this.on('show', function(){ classes(ref[0]).add('opened'); });
+  this.on('hide', function(){ classes(ref[0]).remove('opened'); });
+}
 
 /**
  * Inherits from `Menu.prototype`.
@@ -71,6 +72,7 @@ Dropdown.prototype.__proto__ = Menu.prototype;
 /**
  * Add click event to reference element
  *
+ * @param {Object} ev event object
  * @api private
  */
 
@@ -100,20 +102,23 @@ Dropdown.prototype.addItems = function(){
   for (var i = 0; i < this.options.items.length; i++) {
     var item = this.options.items[i];
     this.add(item[0], item[1], item[2]);
-  };
-}
+  }
+};
 
 /**
  * Focus on item
+ *
+ * @param {String} slug option slug
+ * @api pubic
  */
 
-Dropdown.prototype.focus = function (slug) {
+Dropdown.prototype.focus = function(slug){
   if (this.options.noSelectable) return;
 
-  if (this.current) this.current.removeClass('current');
+  if (this.current) classes(this.current[0]).remove('current');
   this.current = this.items[slug];
 
   if(!this.current) throw new Error('Doesn\'t exists `' + slug + '` item.');
-  this.current.addClass('current');
+  classes(this.current[0]).add('current');
   if (this.options.menu) this.ref.html(o(this.items[slug]).find('a').html());
 };
