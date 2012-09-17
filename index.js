@@ -27,31 +27,33 @@ module.exports = Dropdown;
  * @api public
  */
 
-function Dropdown(ref, opts){
+function Dropdown(ref, opts) {
   if (!(this instanceof Dropdown)) return new Dropdown(ref, opts);
 
   this.options = opts || {};
 
   Menu.call(this, this.dropdown);
 
-  // reference element
-  var ref = this.ref = o(ref);
+  // css element class handler
+  var elclasses = classes(this.el[0]);
 
   // dropdown-menu mode
-  if (this.options.menu) classes(this.el[0]).add('dropdown-menu');
+  if (this.options.menu) elclasses.add('dropdown-menu');
 
   // custom css class
-  if (this.options.css) classes(this.el[0]).add(this.options.css);
+  if (this.options.css) elclasses.add(this.options.css);
 
   // add options
   this.options.items = this.options.items || [];
 
-  // non-selectable dropdown
-  this.options.noSelectable = 'undefined' == typeof this.options.noSelectable
-                              ? this.ref.text().length
-                              : this.options.noSelectable;
+  // reference element
+  var ref = this.ref = o(ref);
 
-  if (this.options.items.length){
+  // non-selectable dropdown
+  this.options.noSelectable = 'undefined' == typeof this.options.noSelectable ?
+                              this.ref.text().length : this.options.noSelectable;
+
+  if (this.options.items.length) {
     this.addItems();
     if (this.options.select) this.focus(this.options.select);
   }
@@ -59,8 +61,10 @@ function Dropdown(ref, opts){
   this.ref.click(this.click.bind(this));
   this.on('select', this.focus.bind(this));
 
-  this.on('show', function(){ classes(ref[0]).add('opened'); });
-  this.on('hide', function(){ classes(ref[0]).remove('opened'); });
+  // reference element class handler
+  var refclasses = classes(ref[0]);
+  this.on('show', function(){ refclasses.add('opened'); });
+  this.on('hide', function(){ refclasses.remove('opened'); });
 }
 
 /**
@@ -115,10 +119,14 @@ Dropdown.prototype.addItems = function(){
 Dropdown.prototype.focus = function(slug){
   if (this.options.noSelectable) return;
 
-  if (this.current) classes(this.current[0]).remove('current');
-  this.current = this.items[slug];
+  // previous selected option ?
+  if (this.current) {
+    classes(this.current[0]).remove('current');
+  }
 
-  if(!this.current) throw new Error('Doesn\'t exists `' + slug + '` item.');
+  this.current = this.items[slug];
+  if (!this.current) throw new Error('Doesn\'t exists `' + slug + '` item.');
+
   classes(this.current[0]).add('current');
   if (this.options.menu) this.ref.html(o(this.items[slug]).find('a').html());
 };
