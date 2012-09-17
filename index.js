@@ -40,7 +40,7 @@ function Dropdown(ref, opts) {
   if (this.options.menu) this.el.addClass('dropdown-menu');
 
   // custom css class
-  if (this.options.css) this.el.addClass(this.options.css);
+  if (this.options.className) this.el.addClass(this.options.className);
 
   // add options
   this.options.items = this.options.items || [];
