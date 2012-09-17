@@ -15,10 +15,10 @@ or add `component/dropdown` as dependency in your `component.json`.
 
 
 
-
 ## Features
 
-It inherits all properties and events of [Menu component](http://www.github/component/menu)
+It inherits all properties and events of [Menu component](https://github.com/component/menu)
+
 
 - events for composition
 - structural CSS letting you decide on style
