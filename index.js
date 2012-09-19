@@ -22,7 +22,7 @@ module.exports = Dropdown;
  *   - items:  {Object} array of the initial items
  *   - menu:   {Boolean} menu mode (default true)
  *   - select: {String} initial item_id select into dropdown
- *   - selectable: {Boolen} defines if dropdown is selectable (default true)
+ *   - selectable: {Boolean} defines if dropdown is selectable (default true)
  *
  * @api public
  */
