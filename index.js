@@ -21,7 +21,7 @@ module.exports = Dropdown;
  *   - items:  {Object} array of the initial items
  *   - menu:   {Boolean} menu mode (default true)
  *   - select: {String} initial item_id select into dropdown
- *   - noSelectable: {Boolen} defines if dropdown is selectable (default false)
+ *   - selectable: {Boolen} defines if dropdown is selectable (default true)
  *
  * @api public
  */
@@ -45,10 +45,10 @@ function Dropdown(ref, opts) {
   // add options
   this.options.items = this.options.items || [];
 
-  // non-selectable dropdown
-  this.options.noSelectable = 'undefined' == typeof this.options.noSelectable
-                              ? this.ref.text().length
-                              : this.options.noSelectable;
+  // selectable dropdown
+  this.options.selectable = 'undefined' == typeof this.options.selectable
+                              ? !this.ref.text().length
+                              : !!this.options.selectable;
 
   if (this.options.items.length) {
     this.addItems();
@@ -100,15 +100,15 @@ Dropdown.prototype.addItems = function(){
   for (var i = 0; i < this.options.items.length; i++) {
     var item = this.options.items[i];
     this.add(item[0], item[1], item[2]);
-  };
-}
+  }
+};
 
 /**
  * Focus on item
  */
 
 Dropdown.prototype.focus = function (slug) {
-  if (this.options.noSelectable) return;
+  if (!this.options.selectable) return;
 
   if (this.current) this.current.removeClass('current');
   this.current = this.items[slug];
