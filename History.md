@@ -1,8 +1,18 @@
 
+0.0.6 / 2012-09-19 
+==================
+
+  * rename noSelectable option param to selectable.
+  * rename .css option param to .classname.
+  * change class manipulation using classes component instead of jQ
+
 0.0.5 / 2012-08-21 
 ==================
 
   * allow add custom css class
+  * add error exception on focus() method
+  * add  make all rule
+  * update to component.json
 
 0.0.4 / 2012-08-20 
 ==================
