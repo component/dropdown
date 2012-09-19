@@ -26,7 +26,7 @@
     <script>
       var Dropdown = require('dropdown/index.js');
 
-      // 1) simple dropdown
+      // 1 - simple dropdown
       var dropdown = Dropdown('#dropdown')
         .add('add-item', 'Add <em>item</em>', function(){ console.log('SEE1') })
         .add('Edit item', function(){ console.log('edit'); })
@@ -36,7 +36,7 @@
           dropdown.remove('Remove "Add item"');
         });
 
-      // 2) dropdown menu
+      // 2 - dropdown menu
       var dropdownMenu = Dropdown('.menu1', {
           menu: true
         , items: [
@@ -57,7 +57,7 @@
         console.log('select -> ', item);
       });
 
-      // 3) no selectable dropdown 
+      // 3 - no selectable dropdown menu
       Dropdown('.menu2', {
           items: [
               ['car']
