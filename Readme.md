@@ -58,7 +58,7 @@ dropdown
   - items: {Array} of initial items.
   - select: {String} defines the focused item
   - classname: {String} defines additional class(es) for the menu container
-  - noSelectable: {Boolen} defines if dropdown is selectable (default false)
+  - selectable: {Boolen} defines if dropdown is selectable (default true)
 
 ```js
 var Dropdown = require('dropdown');

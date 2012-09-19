@@ -22,7 +22,7 @@ module.exports = Dropdown;
  *   - items:  {Object} array of the initial items
  *   - menu:   {Boolean} menu mode (default true)
  *   - select: {String} initial item_id select into dropdown
- *   - noSelectable: {Boolen} defines if dropdown is selectable (default false)
+ *   - selectable: {Boolen} defines if dropdown is selectable (default true)
  *
  * @api public
  */
@@ -41,7 +41,7 @@ function Dropdown(ref, opts) {
   if (this.options.menu) elclasses.add('dropdown-menu');
 
   // custom classname
-  if (this.options.classname) this.el.addClass(this.options.classname);
+  if (this.options.classname) elclasses.add(this.options.classname);
 
   // add options
   this.options.items = this.options.items || [];
@@ -49,9 +49,8 @@ function Dropdown(ref, opts) {
   // reference element
   var ref = this.ref = o(ref);
 
-  // non-selectable dropdown
-  this.options.noSelectable = 'undefined' == typeof this.options.noSelectable ?
-                              this.ref.text().length : this.options.noSelectable;
+  // selectable dropdown
+  this.options.selectable = false !== this.options.selectable;
 
   if (this.options.items.length) {
     this.addItems();
@@ -117,7 +116,7 @@ Dropdown.prototype.addItems = function(){
  */
 
 Dropdown.prototype.focus = function(slug){
-  if (this.options.noSelectable) return;
+  if (!this.options.selectable) return;
 
   // previous selected option ?
   if (this.current) {
