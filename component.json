@@ -6,6 +6,7 @@
   "dependencies": {
     "component/emitter": "*",
     "component/jquery": "*",
+    "component/classes": "*",
     "component/menu": "*"
   },
   "styles":   ["dropdown.css"],
