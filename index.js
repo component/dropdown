@@ -47,7 +47,7 @@ function Dropdown(ref, opts) {
 
   // selectable dropdown
   this.options.selectable = 'undefined' == typeof this.options.selectable
-                              ? !this.ref.text().length
+                              ? true
                               : !!this.options.selectable;
 
   if (this.options.items.length) {
