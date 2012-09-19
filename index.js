@@ -40,8 +40,8 @@ function Dropdown(ref, opts) {
   // dropdown-menu mode
   if (this.options.menu) elclasses.add('dropdown-menu');
 
-  // custom css class
-  if (this.options.css) elclasses.add(this.options.css);
+  // custom classname
+  if (this.options.classname) this.el.addClass(this.options.classname);
 
   // add options
   this.options.items = this.options.items || [];
