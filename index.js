@@ -50,8 +50,7 @@ function Dropdown(ref, opts) {
   var ref = this.ref = o(ref);
 
   // selectable dropdown
-  this.options.selectable = 'undefined' == typeof this.options.selectable
-                              ? true : !!this.options.selectable;
+  this.options.selectable = false !== this.options.selectable;
 
   if (this.options.items.length) {
     this.addItems();
