@@ -43,7 +43,7 @@ function Dropdown(ref, opts) {
   // custom classname
   if (this.options.classname) elclasses.add(this.options.classname);
 
-  // add options
+  // initial items option
   this.options.items = this.options.items || [];
 
   // reference element
@@ -107,8 +107,6 @@ Dropdown.prototype.onClick = function(ev){
  */
 
 Dropdown.prototype.focus = function(slug){
-  if (!this.options.selectable) return;
-
   if (this.current) {
     classes(this.current[0]).remove('current');
   }
@@ -117,5 +115,8 @@ Dropdown.prototype.focus = function(slug){
   if (!this.current) throw new Error('Doesn\'t exists `' + slug + '` item.');
 
   classes(this.current[0]).add('current');
-  if (this.options.menu) this.ref.html(o(this.items[slug]).find('a').html());
+
+  if (this.options.selectabl && this.options.menu) {
+    this.ref.html(o(this.items[slug]).find('a').html());
+  }
 };
