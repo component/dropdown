@@ -109,7 +109,6 @@ Dropdown.prototype.onClick = function(ev){
 Dropdown.prototype.focus = function(slug){
   if (!this.options.selectable) return;
 
-  // previous selected option ?
   if (this.current) {
     classes(this.current[0]).remove('current');
   }
