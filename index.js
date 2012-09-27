@@ -53,7 +53,11 @@ function Dropdown(ref, opts) {
   this.options.selectable = false !== this.options.selectable;
 
   if (this.options.items.length) {
-    this.addItems();
+    for (var i = 0; i < this.options.items.length; i++) {
+      var item = this.options.items[i];
+      item = item instanceof Array ? item : [item, null, null];
+      this.add(item[0], item[1], item[2]);
+    }
     if (this.options.select) this.focus(this.options.select);
   }
 
@@ -93,20 +97,6 @@ Dropdown.prototype.click = function(ev){
 
   this.moveTo(x, y);
   this.show();
-};
-
-/**
- * Add items into dropdown menu
- *
- * @api private
- */
-
-Dropdown.prototype.addItems = function(){
-  for (var i = 0; i < this.options.items.length; i++) {
-    var item = this.options.items[i];
-    item = item instanceof Array ? item : [item, null, null];
-    this.add(item[0], item[1], item[2]);
-  }
 };
 
 /**
