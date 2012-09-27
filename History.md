@@ -1,4 +1,10 @@
 
+0.0.7 / 2012-09-27 
+==================
+
+  * rename .click() method to .onClick()
+  * remove addItems() and move that code into constructor
+
 0.0.6 / 2012-09-19 
 ==================
 

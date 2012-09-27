@@ -1,7 +1,9 @@
 {
   "name": "dropdown",
   "description": "Dropdown component",
-  "version": "0.0.6",
+  "repo": "component/dropdown",
+  "author": "Damian Suarez <rdsuarez@gmail.com>",
+  "version": "0.0.7",
   "keywords": ["dropdown", "component"],
   "dependencies": {
     "component/emitter": "*",
