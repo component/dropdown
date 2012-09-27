@@ -61,7 +61,7 @@ function Dropdown(ref, opts) {
     if (this.options.select) this.focus(this.options.select);
   }
 
-  this.ref.click(this.click.bind(this));
+  this.ref.click(this.onClick.bind(this));
   this.on('select', this.focus.bind(this));
 
   // reference element class handler
@@ -83,7 +83,7 @@ Dropdown.prototype.__proto__ = Menu.prototype;
  * @api private
  */
 
-Dropdown.prototype.click = function(ev){
+Dropdown.prototype.onClick = function(ev){
   ev.preventDefault();
   ev.stopPropagation();
   var x, y;
