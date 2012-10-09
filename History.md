@@ -1,4 +1,9 @@
 
+0.1.0 / 2012-10-09 
+==================
+
+  * Menu position relative to document instead of parent element.
+
 0.0.7 / 2012-09-27 
 ==================
 
