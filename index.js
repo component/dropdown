@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -89,7 +88,7 @@ Dropdown.prototype.onClick = function(ev){
   var x, y;
 
   if (this.options.menu) {
-    var p = this.ref.position();
+    var p = this.ref.offset();
     x = p.left, y = p.top + this.ref.outerHeight();
   } else {
     x = ev.pageX, y = ev.pageY;
