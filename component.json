@@ -9,7 +9,8 @@
     "component/emitter": "*",
     "component/jquery": "*",
     "component/classes": "*",
-    "component/menu": "*"
+    "component/menu": "*",
+    "component/mousetrap": "*"
   },
   "styles":   ["dropdown.css"],
   "scripts":  ["index.js"]

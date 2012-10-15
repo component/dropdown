@@ -3,6 +3,7 @@
  */
 
 var Menu = require('menu')
+  , Mousetrap = require('mousetrap')
   , classes = require('classes')
   , o = require('jquery');
 
@@ -63,6 +64,9 @@ function Dropdown(ref, opts) {
   this.ref.click(this.onClick.bind(this));
   this.on('select', this.focus.bind(this));
 
+  // Key bindings
+  Mousetrap.bind('esc', this.onEsc.bind(this), 'keyup');
+
   // reference element class handler
   var refclasses = classes(ref[0]);
   this.on('show', function(){ refclasses.add('opened'); });
@@ -96,6 +100,17 @@ Dropdown.prototype.onClick = function(ev){
 
   this.moveTo(x, y);
   this.show();
+};
+
+/**
+ * Add [ESC] key up event to reference element
+ *
+ * @api private
+ */
+Dropdown.prototype.onEsc = function(){
+  if (this.el.is(':visible')) {
+    this.hide();
+  }
 };
 
 /**
