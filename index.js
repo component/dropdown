@@ -64,14 +64,19 @@ function Dropdown(ref, opts) {
   this.ref.click(this.onClick.bind(this));
   this.on('select', this.focus.bind(this));
 
-  // Key bindings
-  Mousetrap.bind('esc', this.onEsc.bind(this), 'keyup');
-  Mousetrap.bind('abcdefghijklmnopqrstuvwxyz0123456789'.split(''), this.onLetter.bind(this));
-
   // reference element class handler
   var refclasses = classes(ref[0]);
-  this.on('show', function(){ refclasses.add('opened'); });
-  this.on('hide', function(){ refclasses.remove('opened'); });
+
+  this.on('show', function(){
+    refclasses.add('opened');
+    Mousetrap.bind('esc', this.onEsc.bind(this), 'keyup');
+    Mousetrap.bind('abcdefghijklmnopqrstuvwxyz0123456789'.split(''), this.onAlphaNum.bind(this));
+  }.bind(this));
+
+  this.on('hide', function(){
+    refclasses.remove('opened');
+    Mousetrap.reset();
+  });
 }
 
 /**
@@ -127,8 +132,8 @@ Dropdown.prototype.onEsc = function(){
  * @api private
  */
 
-Dropdown.prototype.onLetter = function(ev){
-  if (this.isVisible()) {
+Dropdown.prototype.onAlphaNum = function(ev){
+  if (this.options.menu && this.isVisible()) {
 
     // Focus menu items which start with the pressed key
     var key = ev.keyCode || ev.which
