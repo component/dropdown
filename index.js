@@ -89,17 +89,22 @@ Dropdown.prototype.__proto__ = Menu.prototype;
 Dropdown.prototype.onClick = function(ev){
   ev.preventDefault();
   ev.stopPropagation();
-  var x, y;
 
-  if (this.options.menu) {
-    var p = this.ref.offset();
-    x = p.left, y = p.top + this.ref.outerHeight();
+  if (this.isVisible()) {
+    this.el.hide();
   } else {
-    x = ev.pageX, y = ev.pageY;
-  }
+    var x, y;
 
-  this.moveTo(x, y);
-  this.show();
+    if (this.options.menu) {
+      var p = this.ref.offset();
+      x = p.left, y = p.top + this.ref.outerHeight();
+    } else {
+      x = ev.pageX, y = ev.pageY;
+    }
+
+    this.moveTo(x, y);
+    this.show();
+  }
 };
 
 /**
@@ -108,7 +113,7 @@ Dropdown.prototype.onClick = function(ev){
  * @api private
  */
 Dropdown.prototype.onEsc = function(){
-  if (this.el.is(':visible')) {
+  if (this.isVisible()) {
     this.hide();
   }
 };
@@ -134,3 +139,14 @@ Dropdown.prototype.focus = function(slug){
     this.ref.html(o(this.items[slug]).find('a').html());
   }
 };
+
+/**
+ * Test if menu is visible
+ *
+ * @api pubic
+ */
+
+Dropdown.prototype.isVisible = function(){
+  return this.el.is(':visible');
+};
+
