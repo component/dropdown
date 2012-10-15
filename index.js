@@ -91,7 +91,7 @@ Dropdown.prototype.onClick = function(ev){
   ev.stopPropagation();
 
   if (this.isVisible()) {
-    this.el.hide();
+    this.hide();
   } else {
     var x, y;
 
