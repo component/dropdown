@@ -66,6 +66,7 @@ function Dropdown(ref, opts) {
 
   // Key bindings
   Mousetrap.bind('esc', this.onEsc.bind(this), 'keyup');
+  Mousetrap.bind('abcdefghijklmnopqrstuvwxyz0123456789'.split(''), this.onLetter.bind(this));
 
   // reference element class handler
   var refclasses = classes(ref[0]);
@@ -115,6 +116,36 @@ Dropdown.prototype.onClick = function(ev){
 Dropdown.prototype.onEsc = function(){
   if (this.isVisible()) {
     this.hide();
+  }
+};
+
+/**
+ * Add [a-z,0-9] key press event to reference element
+ *
+ * @param {Object} ev KeyboardEvent object
+ * @api private
+ */
+Dropdown.prototype.onLetter = function(ev){
+  if (this.isVisible()) {
+
+    // Focus menu items which start with the pressed key
+    var key = ev.keyCode || ev.which
+      , chr = String.fromCharCode(key)
+      , slug;
+
+    // Match first slug by that letter
+    for (var key in this.items) {
+      if (this.items.hasOwnProperty(key)
+        && typeof slug == 'undefined'
+        && o.trim(this.items[key].text()).toLowerCase().indexOf(chr) === 0) {
+          slug = key;
+      }
+    }
+
+    // Focus
+    if (typeof slug !== 'undefined') {
+      this.focus(slug);
+    }
   }
 };
 
