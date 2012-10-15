@@ -21,6 +21,7 @@
     <p>Click <a id="dropdown" href="#">here</a> to open a dropdown.</p>
     <p>This is a dropdown menu: <span class="dropdown-link menu1">Fruits</span></p>
     <p>Another no-selectable example: <span class="dropdown-link menu2"><em>Select</em></span></p>
+    <p>A long dropdown example: <span class="dropdown-link menu3"><em>Year</em></span></p>
 
     <script src="../build/build.js"></script>
     <script>
@@ -68,6 +69,12 @@
         , selectable: false
       });
 
+      // 4 - long list of options
+      var longDrop = Dropdown('.menu3', { menu: true });
+      for (var i = 1900; i < 2000; i++) {
+        longDrop.add(i.toString());
+      }
+
     </script>
   </body>
-</html> 
+</html>

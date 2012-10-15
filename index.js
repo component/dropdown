@@ -3,7 +3,6 @@
  */
 
 var Menu = require('menu')
-  , Mousetrap = require('mousetrap')
   , classes = require('classes')
   , o = require('jquery');
 
@@ -66,17 +65,8 @@ function Dropdown(ref, opts) {
 
   // reference element class handler
   var refclasses = classes(ref[0]);
-
-  this.on('show', function(){
-    refclasses.add('opened');
-    Mousetrap.bind('esc', this.onEsc.bind(this), 'keyup');
-    Mousetrap.bind('abcdefghijklmnopqrstuvwxyz0123456789'.split(''), this.onAlphaNum.bind(this));
-  }.bind(this));
-
-  this.on('hide', function(){
-    refclasses.remove('opened');
-    Mousetrap.reset();
-  });
+  this.on('show', function(){ refclasses.add('opened'); });
+  this.on('hide', function(){ refclasses.remove('opened'); });
 }
 
 /**
@@ -114,30 +104,19 @@ Dropdown.prototype.onClick = function(ev){
 };
 
 /**
- * Add [ESC] key up event to reference element
+ * Handle keydown events.
  *
  * @api private
  */
 
-Dropdown.prototype.onEsc = function(){
-  if (this.isVisible()) {
-    this.hide();
-  }
-};
+Dropdown.prototype.onkeydown = function(ev){
 
-/**
- * Add [a-z,0-9] key press event to reference element
- *
- * @param {Object} ev KeyboardEvent object
- * @api private
- */
-
-Dropdown.prototype.onAlphaNum = function(ev){
+  // Letter-navigation
   if (this.options.menu && this.isVisible()) {
 
     // Focus menu items which start with the pressed key
     var key = ev.keyCode || ev.which
-      , chr = String.fromCharCode(key)
+      , chr = String.fromCharCode(key).toLowerCase()
       , slug;
 
     // Match first slug by that letter
@@ -154,6 +133,9 @@ Dropdown.prototype.onAlphaNum = function(ev){
       this.focus(slug);
     }
   }
+
+  // Super
+  Menu.prototype.onkeydown.call(this, ev);
 };
 
 /**
