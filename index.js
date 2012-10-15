@@ -85,17 +85,57 @@ Dropdown.prototype.__proto__ = Menu.prototype;
 Dropdown.prototype.onClick = function(ev){
   ev.preventDefault();
   ev.stopPropagation();
-  var x, y;
 
-  if (this.options.menu) {
-    var p = this.ref.offset();
-    x = p.left, y = p.top + this.ref.outerHeight();
+  if (this.isVisible()) {
+    this.hide();
   } else {
-    x = ev.pageX, y = ev.pageY;
+    var x, y;
+
+    if (this.options.menu) {
+      var p = this.ref.offset();
+      x = p.left, y = p.top + this.ref.outerHeight();
+    } else {
+      x = ev.pageX, y = ev.pageY;
+    }
+
+    this.moveTo(x, y);
+    this.show();
+  }
+};
+
+/**
+ * Handle keydown events.
+ *
+ * @api private
+ */
+
+Dropdown.prototype.onkeydown = function(ev){
+
+  // Letter-navigation
+  if (this.options.menu && this.isVisible()) {
+
+    // Focus menu items which start with the pressed key
+    var key = ev.keyCode || ev.which
+      , chr = String.fromCharCode(key).toLowerCase()
+      , slug;
+
+    // Match first slug by that letter
+    for (var key in this.items) {
+      if (this.items.hasOwnProperty(key)
+        && typeof slug == 'undefined'
+        && o.trim(this.items[key].text()).toLowerCase().indexOf(chr) === 0) {
+          slug = key;
+      }
+    }
+
+    // Focus
+    if (typeof slug !== 'undefined') {
+      this.focus(slug);
+    }
   }
 
-  this.moveTo(x, y);
-  this.show();
+  // Super
+  Menu.prototype.onkeydown.call(this, ev);
 };
 
 /**
@@ -119,3 +159,14 @@ Dropdown.prototype.focus = function(slug){
     this.ref.html(o(this.items[slug]).find('a').html());
   }
 };
+
+/**
+ * Test if menu is visible
+ *
+ * @api pubic
+ */
+
+Dropdown.prototype.isVisible = function(){
+  return this.el.is(':visible');
+};
+
