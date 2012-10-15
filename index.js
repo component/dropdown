@@ -113,6 +113,7 @@ Dropdown.prototype.onClick = function(ev){
  *
  * @api private
  */
+
 Dropdown.prototype.onEsc = function(){
   if (this.isVisible()) {
     this.hide();
@@ -125,6 +126,7 @@ Dropdown.prototype.onEsc = function(){
  * @param {Object} ev KeyboardEvent object
  * @api private
  */
+
 Dropdown.prototype.onLetter = function(ev){
   if (this.isVisible()) {
 
