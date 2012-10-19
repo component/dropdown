@@ -3,7 +3,7 @@
   "description": "Dropdown component",
   "repo": "component/dropdown",
   "author": "Damian Suarez <rdsuarez@gmail.com>",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "keywords": ["dropdown", "component"],
   "dependencies": {
     "component/emitter": "*",
