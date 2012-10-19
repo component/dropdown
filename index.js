@@ -118,4 +118,5 @@ Dropdown.prototype.focus = function(slug){
   if (this.options.selectabl && this.options.menu) {
     this.ref.html(o(this.items[slug]).find('a').html());
   }
+  return this;
 };
