@@ -4,12 +4,12 @@
   "repo": "component/dropdown",
   "author": "Damian Suarez <rdsuarez@gmail.com>",
   "version": "0.1.1",
+  "twitter": "@retrofox",
   "keywords": [
     "dropdown",
     "component"
   ],
   "dependencies": {
-    "component/emitter": "*",
     "component/jquery": "*",
     "component/classes": "*",
     "component/menu": "*"
