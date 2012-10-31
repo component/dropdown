@@ -60,7 +60,7 @@ function Dropdown(ref, opts) {
     if (this.options.select) this.focus(this.options.select);
   }
 
-  this.ref.click(this.onClick.bind(this));
+  this.ref.mousedown(this.onClick.bind(this));
   this.on('select', this.focus.bind(this));
 
   // reference element class handler
