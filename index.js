@@ -117,6 +117,7 @@ Dropdown.prototype.focus = function(slug){
 
   if (this.options.selectable && this.options.menu) {
     this.ref.html(o(this.items[slug]).find('a').html());
+    this.emit('focus', slug);
   }
   return this;
 };
