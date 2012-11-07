@@ -22,8 +22,10 @@ $ npm install dropdown-component
 
 ## Events
 
-  It inherits all events of [Menu component](https://github.com/component/menu). It
-  not added anymore.
+  It inherits all events of [Menu component](https://github.com/component/menu)
+  and add:
+
+  - `focus`: when an item is correctly selected.
 
 ## Dependencies
 

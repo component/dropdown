@@ -1,4 +1,10 @@
 
+0.1.2 / 2012-11-07 
+==================
+
+  * emit `focus` event
+  * add .license property to component.json
+
 0.1.1 / 2012-10-19 
 ==================
 
