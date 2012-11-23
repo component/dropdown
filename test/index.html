@@ -14,27 +14,30 @@
         color: #8cc;
       }
 
+      .current {
+        background-color: #ddd;
+      }
+
     </style>
   </head>
   <body>
     <h2>Dropdown</h2>
-    <p>Click <a id="dropdown" href="#">here</a> to open a dropdown.</p>
-    <p>This is a dropdown menu: <span class="dropdown-link menu1">Fruits</span></p>
-    <p>Another no-selectable example: <span class="dropdown-link menu2"><em>Select</em></span></p>
+    <p>Click <a id="dropdown" href="#">here</a> to open an inline dropdown.</p>
+    <p>Dropdown menu: <span class="dropdown-link menu1">Fruits</span></p>
+    <p>No-selectable dropdown menu: <span class="dropdown-link menu2"><em>Select</em></span></p>
 
     <script src="../build/build.js"></script>
     <script>
       var Dropdown = require('dropdown/index.js');
 
+      var n = 0;
+
       // 1 - simple dropdown
       var dropdown = Dropdown('#dropdown')
-        .add('add-item', 'Add <em>item</em>', function(){ console.log('SEE1') })
-        .add('Edit item', function(){ console.log('edit'); })
-        .add('Remove item', function(){ console.log('remove'); })
-        .add('Remove "Add item"', function(){
-          dropdown.remove('add-item');
-          dropdown.remove('Remove "Add item"');
-        });
+        .add('Add item', function(){ n++; dropdown.add('new ' + n + ' item'); })
+        .add('Edit item', 'Edit <em>item</em>', function(){ console.log('edit'); })
+        .add('Remove "Add item"', function(){ dropdown.remove('add-item'); })
+        .on('select', function(slug) { console.log(slug); })
 
       // 2 - dropdown menu
       var dropdownMenu = Dropdown('.menu1', {
@@ -53,7 +56,7 @@
         , selectable: true
       });
 
-      dropdownMenu.on('select', function(item) {
+      dropdownMenu.on('focus', function(item) {
         console.log('select -> ', item);
       });
 
