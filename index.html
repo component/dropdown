@@ -1,1 +1,73 @@
-My Page
+<!DOCTYPE 5>
+<html>
+  <head>
+    <title>Dropdown component</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="build.css" />
+    <style>
+      ul.custom-menu {
+        background-color: #333;
+        color: white;
+      }
+
+      ul.custom-menu li a {
+        color: #8cc;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h2>Dropdown</h2>
+    <p>Click <a id="dropdown" href="#">here</a> to open a dropdown.</p>
+    <p>This is a dropdown menu: <span class="dropdown-link menu1">Fruits</span></p>
+    <p>Another no-selectable example: <span class="dropdown-link menu2"><em>Select</em></span></p>
+
+    <script src="build.js"></script>
+    <script>
+      var Dropdown = require('dropdown/index.js');
+
+      // 1 - simple dropdown
+      var dropdown = Dropdown('#dropdown')
+        .add('add-item', 'Add <em>item</em>', function(){ console.log('SEE1') })
+        .add('Edit item', function(){ console.log('edit'); })
+        .add('Remove item', function(){ console.log('remove'); })
+        .add('Remove "Add item"', function(){
+          dropdown.remove('add-item');
+          dropdown.remove('Remove "Add item"');
+        });
+
+      // 2 - dropdown menu
+      var dropdownMenu = Dropdown('.menu1', {
+          menu: true
+        , items: [
+              ['apple', '<em>Apple</em>', function(){ console.log('Apple !!') }]
+            , ['orange', '<strong style="color: #f86">orange</strong>']
+            , ['banana']
+            , ['strawberry', function() {
+                  console.log('remove the orange');
+                  dropdownMenu.remove('orange');
+                }
+              ]
+          ]
+        , classname: 'custom-menu'
+        , selectable: true
+      });
+
+      dropdownMenu.on('select', function(item) {
+        console.log('select -> ', item);
+      });
+
+      // 3 - no selectable dropdown menu
+      Dropdown('.menu2', {
+          items: [
+              ['car']
+            , ['trucks']
+            , ['aeroplanes', function(slug){ console.log('Aero !!') }]
+          ]
+        , menu: true
+        , selectable: false
+      });
+
+    </script>
+  </body>
+</html> 
