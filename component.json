@@ -2,9 +2,9 @@
   "name": "dropdown",
   "description": "Dropdown component",
   "repo": "component/dropdown",
+  "version": "0.1.3",
   "author": "Damian Suarez <rdsuarez@gmail.com>",
   "twitter": "@retrofox",
-  "version": "0.1.2",
   "twitter": "@retrofox",
   "keywords": [
     "dropdown",

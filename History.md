@@ -1,4 +1,10 @@
 
+0.1.3 / 2012-11-23 
+==================
+
+  * css: fix css rule definition
+  * test: minor improvements in testing client page
+
 0.1.2 / 2012-11-07 
 ==================
 

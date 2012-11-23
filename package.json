@@ -1,7 +1,9 @@
 {
   "name": "dropdown-component",
   "description": "Dropdown component",
-  "version": "0.1.",
+  "version": "0.1.3",
+  "author": "Damian Suarez <rdsuarez@gmail.com>",
+  "twitter": "@retrofox",
   "keywords": [
     "dropdown",
     "component"
