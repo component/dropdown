@@ -13,9 +13,59 @@
       ul.custom-menu li a {
         color: #8cc;
       }
+
+      #ribbon {
+        position: absolute;
+        top: 2.5em;
+        right: -3.75em;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        background-color: #b3d107;
+        padding: 1px 0;
+        overflow: hidden;
+        -moz-box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      }
+
+      #ribbon a {
+        color: #fff;
+        border: 1px solid #d5e965;
+        display: block;
+        margin: 0.05em 0;
+        padding: 0.5em 3.5em;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      #counter {
+        position: fixed;
+        top: 4.5em;
+        right: -6.5em;
+        width: 400px;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        background-color: #f0f0f0;
+        padding: 1px 0;
+        overflow: hidden;
+        -moz-box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      }
+
+      #counter img {
+        display: block;
+        margin: 0 auto;
+      }
     </style>
   </head>
   <body>
+    <div id="ribbon"><a href="http://github.com/component/dropdown">Fork me on GitHub</a></div>
+
+    <div id="counter">
+      <img src="https://component.jit.su/component-badge.svg" height="40" />
+    </div>
+
     <h2>Dropdown</h2>
     <p>Click <a id="dropdown" href="#">here</a> to open an inline dropdown.</p>
     <p>Dropdown menu: <span class="dropdown-link menu1">Fruits</span></p>
