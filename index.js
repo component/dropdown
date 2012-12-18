@@ -116,7 +116,8 @@ Dropdown.prototype.focus = function(slug){
   classes(this.current[0]).add('current');
 
   if (this.options.selectable && this.options.menu) {
-    this.ref.html(o(this.items[slug]).find('a').html());
+    var mtd =  'input' == this.ref.get(0).tagName.toLowerCase() ? 'val' : 'html';
+    this.ref[mtd](o(this.items[slug]).find('a').html());
     this.emit('focus', slug);
   }
   return this;
