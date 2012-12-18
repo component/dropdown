@@ -3,7 +3,7 @@
   <head>
     <title>Dropdown component</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="build.css" />
+    <link rel="stylesheet" href="../build/build.css" />
     <style>
       ul.custom-menu {
         background-color: #333;
@@ -20,8 +20,9 @@
     <p>Click <a id="dropdown" href="#">here</a> to open an inline dropdown.</p>
     <p>Dropdown menu: <span class="dropdown-link menu1">Fruits</span></p>
     <p>No-selectable dropdown menu: <span class="dropdown-link menu2"><em>Select</em></span></p>
+    <p>Into input element: <input class="dropdown-link dropdown-input" value ="Fruits" /></p>
 
-    <script src="build.js"></script>
+    <script src="../build/build.js"></script>
     <script>
       var Dropdown = require('dropdown/index.js');
 
@@ -64,6 +65,16 @@
           ]
         , menu: true
         , selectable: false
+      });
+
+      // 4 - into an input element
+      Dropdown('.dropdown-input', {
+          items: [
+              ['car']
+            , ['trucks']
+            , ['aeroplanes', function(slug){ console.log('Aero !!') }]
+          ]
+        , menu: true
       });
 
     </script>
