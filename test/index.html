@@ -54,35 +54,32 @@
       });
 
       // 3 - dropdown menu (multiple)
-      var dropdownMenu = Dropdown('.multiple', {
+      var multiDropdown = Dropdown('.multiple', {
           items: [
               ['apple', '<em>Apple</em>', function(){ console.log('Apple !!') }]
             , ['orange', '<strong style="color: #f86">orange</strong>']
-            , ['banana']
-            , ['strawberry', function() {
-                  console.log('remove the orange');
-                  dropdownMenu.remove('orange');
-                }
-              ]
+            , 'banana'
+            , 'strawberry'
+            , ['empty', 'Empty Dropdown', function() { multiDropdown.empty(); }]
           ]
         , classname: 'custom-menu'
         , selectable: false
         , multiple: true
       });
 
-      dropdownMenu.on('focus', function(item) {
+      multiDropdown.on('focus', function(item) {
         console.log('focus `%s`', item);
       });
 
-      dropdownMenu.on('select', function(item) {
+      multiDropdown.on('select', function(item) {
         console.log('select `%s`', item);
       });
 
-      dropdownMenu.on('check', function(item, checked) {
+      multiDropdown.on('check', function(item, checked) {
         console.log('check `%s` - checked: ', item, checked);
       });
 
-      dropdownMenu.on('uncheck', function(item, checked) {
+      multiDropdown.on('uncheck', function(item, checked) {
         console.log('uncheck `%s` - cheched: ', item, checked);
       });
 
