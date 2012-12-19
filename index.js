@@ -55,7 +55,7 @@ function Dropdown(ref, opts) {
     if (this.options.select) this.focus(this.options.select);
   }
 
-  this.ref.click(this.onClick.bind(this));
+  this.ref.click(this.onclick.bind(this));
   this.on('select', this.focus.bind(this));
 
   this.checked = [];
@@ -79,7 +79,9 @@ Dropdown.prototype.__proto__ = Menu.prototype;
  * @api private
  */
 
-Dropdown.prototype.onClick = function(ev){
+Dropdown.prototype.onclick = function(ev){
+  if (o.isEmptyObject(this.items)) return;
+
   ev.preventDefault();
   ev.stopPropagation();
   var x, y;
