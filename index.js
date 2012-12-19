@@ -36,8 +36,10 @@ function Dropdown(ref, opts) {
   // css element class handler
   var elclasses = classes(this.el[0]);
 
+  console.log('-> this.options -> ', this.options);
+
   // dropdown-menu mode
-  if (this.options.menu) elclasses.add('dropdown-menu');
+  if (false !== this.options.menu) elclasses.add('dropdown-menu');
 
   // custom classname
   if (this.options.classname) elclasses.add(this.options.classname);
@@ -115,10 +117,24 @@ Dropdown.prototype.focus = function(slug){
 
   classes(this.current[0]).add('current');
 
-  if (this.options.selectable && this.options.menu) {
+  if (this.options.selectable) {
     var mtd =  'input' == this.ref.get(0).tagName.toLowerCase() ? 'val' : 'html';
     this.ref[mtd](o(this.items[slug]).find('a').html());
     this.emit('focus', slug);
   }
   return this;
 };
+
+/**
+ * Option setter
+ *
+ * @param {String} k
+ * @param {*} v
+ * @api public
+ */
+
+Dropdown.prototype.option = function(k, v){
+  this.options[k] = v;
+  return this;
+};
+
