@@ -30,6 +30,8 @@
 
       // 1 - simple dropdown
       var dropdown = Dropdown('#dropdown')
+        .option('selectable', false)
+        .option('menu', false)
         .add('Add item', function(){ n++; dropdown.add('new ' + n + ' item'); })
         .add('Edit item', 'Edit <em>item</em>', function(){ console.log('edit'); })
         .add('Remove "Add item"', function(){ dropdown.remove('add-item'); })
@@ -37,8 +39,7 @@
 
       // 2 - dropdown menu
       var dropdownMenu = Dropdown('.menu1', {
-          menu: true
-        , items: [
+          items: [
               ['apple', '<em>Apple</em>', function(){ console.log('Apple !!') }]
             , ['orange', '<strong style="color: #f86">orange</strong>']
             , ['banana']
@@ -63,7 +64,6 @@
             , ['trucks']
             , ['aeroplanes', function(slug){ console.log('Aero !!') }]
           ]
-        , menu: true
         , selectable: false
       });
 
@@ -74,7 +74,6 @@
             , ['trucks']
             , ['aeroplanes', function(slug){ console.log('Aero !!') }]
           ]
-        , menu: true
       });
 
     </script>
