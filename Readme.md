@@ -11,7 +11,7 @@
 ## Installation
 
 ```
-$ npm install dropdown-component
+$ component install component/dropdown
 ```
 
 ## Features
@@ -59,19 +59,19 @@ dropdown
   Create a new `Dropdown` associated to `ref` element. Also support the follow
   options:
 
-  - menu: {Boolean} value that defines if dropdown support menu behaviur.
-  - items: {Array} of initial items.
-  - select: {String} defines the focused item
-  - classname: {String} defines additional class(es) for the menu container
-  - selectable: {Boolean} defines if dropdown is selectable (default true)
+  - menu: `{Boolean}` Set menu behaviur (default false).
+  - items: `{Array}` Array of initial items.
+  - select: `{String}` Initial focused item
+  - selectable: `{Boolean}` Defines if dropdown is selectable (default true)
+  - classname: `{String}` Additional class(es) to menu element container
 
 ```js
 var Dropdown = require('dropdown');
 var dropdown = Dropdown('.dropdown-link', {
     menu: true
   , items: [
-        ['apple', '<em>Apple</em>', funcrion (){ console.log('It\'s an Apple!') }]
-      , ['orange', '<strong style="color: #f86">orange</strong>']
+        ['apple', function (){ console.log('It\'s an Apple!') }]
+      , ['orange', '<em>orange</em>']
       , ['banana', '<strong>Banana</strong>']
       , ['strawberry', function() {
             console.log('remove the orange');
@@ -83,13 +83,13 @@ var dropdown = Dropdown('.dropdown-link', {
 });
 ```
 
-### Inherits methods:
+### Menu inherits methods:
 
-### Dropdown#add([slug], text, [fn])
-### Dropdown#remove(slug)
-### Dropdown#has(slug)
-### Dropdown#show()
-### Dropdown#hide()
+## Dropdown#add([slug], text, [fn])
+## Dropdown#remove(slug)
+## Dropdown#has(slug)
+## Dropdown#show()
+## Dropdown#hide()
 
 ### Dropdown#focus(slug):
 
@@ -102,7 +102,7 @@ var dropdown = Dropdown('.dropdown-link', {
 ## License
 
   (The MIT License)
-  Copyright(c) 2012 Damian Suarez <rdsuarez@gmail.com>
+  Copyright(c) 2012 Damian Suarez &lt;rdsuarez@gmail.com&gt;
   
   Permission is hereby granted, free of charge, to any person obtaining
   a copy of this software and associated documentation files (the
