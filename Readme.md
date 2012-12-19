@@ -58,7 +58,7 @@ dropdown
   Create a new `Dropdown` associated to `ref` element. Also support the follow
   options:
 
-  - menu: `{Boolean}` Set menu behaviur (default false).
+  - menu: `{Boolean}` Set menu behaviur (default true).
   - items: `{Array}` Array of initial items.
   - select: `{String}` Initial focused item
   - selectable: `{Boolean}` Defines if dropdown is selectable (default true)
