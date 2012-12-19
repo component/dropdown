@@ -15,13 +15,19 @@ module.exports = Dropdown;
 /**
  * Initialize a new `Dropdown`.
  *
+ * Emits:
+ *  `focus` when an item is really selected
+ *  `check` when an item is checked (multiple mode)
+ *  `uncheck` when an item is unchecked (multiple mode)
+ *
  * @param {String|Object} element reference
  * @param {Object} options:
  *
  *   - items:  {Object} array of the initial items
  *   - menu:   {Boolean} menu mode (default true)
  *   - select: {String} initial item_id select into dropdown
- *   - selectable: {Boolean} defines if dropdown is selectable (default true)
+ *   - selectable: {Boolean} defines if dropdown is seloectable (default true)
+ *   - muliple: allow check more than one item
  *
  * @api public
  */
@@ -51,6 +57,8 @@ function Dropdown(ref, opts) {
 
   this.ref.click(this.onClick.bind(this));
   this.on('select', this.focus.bind(this));
+
+  this.checked = [];
 
   // reference element class handler
   var refclasses = classes(ref.get(0));
@@ -106,7 +114,9 @@ Dropdown.prototype.focus = function(slug){
     if (multi) {
       if (!new_selection) {
         css_selected.remove('current');
-        return this.emit('uncheck', this.current);
+        var ind = this.checked.indexOf(this.current);
+        this.checked.splice(ind, 1);
+        return this.emit('uncheck', this.current, this.checked);
       }
     } else if (new_selection) {
       classes(this.items[this.current].get(0)).remove('current');
@@ -119,7 +129,8 @@ Dropdown.prototype.focus = function(slug){
       this.ref[mtd](selected.find('a').html());
       this.emit('focus', slug);
     }
-    this.emit('check', slug);
+    this.checked.push(slug);
+    this.emit('check', slug, this.checked);
   }
 
   css_selected.add('current');
