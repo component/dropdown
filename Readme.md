@@ -5,8 +5,7 @@
   ![js dropdown
   component](http://f.cl.ly/items/010I1g3E2I3j2j2E3j0F/Screen%20Shot%202012-08-10%20at%2011.40.20%20AM.png)
 
-  You can see Dropdown in action in [this github
-  page](http://component.github.com/dropdown/).
+  See Dropdown in action in [here](http://component.github.com/dropdown/).
 
 ## Installation
 
@@ -85,11 +84,11 @@ var dropdown = Dropdown('.dropdown-link', {
 
 ### Menu inherits methods:
 
-## Dropdown#add([slug], text, [fn])
-## Dropdown#remove(slug)
-## Dropdown#has(slug)
-## Dropdown#show()
-## Dropdown#hide()
+  * Dropdown#add([slug], text, [fn])
+  * Dropdown#remove(slug)
+  * Dropdown#has(slug)
+  * Dropdown#show()
+  * Dropdown#hide()
 
 ### Dropdown#focus(slug):
 
