@@ -54,6 +54,11 @@ dropdown
 ## API
   
 ### Dropdown(ref, options)
+ *
+ * Emits:
+ *  `focus` when an item is really selected
+ *  `check` when an item is checked (multiple mode)
+ *  `uncheck` when an item is unchecked (multiple mode)
 
   Create a new `Dropdown` associated to `ref` element. Also support the follow
   options:
@@ -63,6 +68,7 @@ dropdown
   - select: `{String}` Initial focused item
   - selectable: `{Boolean}` Defines if dropdown is selectable (default true)
   - classname: `{String}` Additional class(es) to menu element container
+  - muliple: `{Boolean}` allow check more than one item
 
 ```js
 var Dropdown = require('dropdown');
