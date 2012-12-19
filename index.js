@@ -28,31 +28,18 @@ module.exports = Dropdown;
 
 function Dropdown(ref, opts) {
   if (!(this instanceof Dropdown)) return new Dropdown(ref, opts);
-
-  this.options = opts || {};
-
   Menu.call(this, this.dropdown);
 
-  // css element class handler
-  var elclasses = classes(this.el[0]);
-
-  console.log('-> this.options -> ', this.options);
-
-  // dropdown-menu mode
-  if (false !== this.options.menu) elclasses.add('dropdown-menu');
-
-  // custom classname
-  if (this.options.classname) elclasses.add(this.options.classname);
-
-  // initial items option
+  this.options = opts || {};
+  this.options.menu = false !== this.options.menu;
   this.options.items = this.options.items || [];
-
-  // reference element
-  var ref = this.ref = o(ref);
-
-  // selectable dropdown
   this.options.selectable = false !== this.options.selectable;
 
+  var elclasses = classes(this.el.get(0));
+  if (this.options.menu) elclasses.add('dropdown-menu');
+  if (this.options.classname) elclasses.add(this.options.classname);
+
+  var ref = this.ref = o(ref);
   if (this.options.items.length) {
     for (var i = 0; i < this.options.items.length; i++) {
       var item = this.options.items[i];
@@ -66,7 +53,7 @@ function Dropdown(ref, opts) {
   this.on('select', this.focus.bind(this));
 
   // reference element class handler
-  var refclasses = classes(ref[0]);
+  var refclasses = classes(ref.get(0));
   this.on('show', function(){ refclasses.add('opened'); });
   this.on('hide', function(){ refclasses.remove('opened'); });
 }
