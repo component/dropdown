@@ -95,21 +95,25 @@ Dropdown.prototype.onClick = function(ev){
  */
 
 Dropdown.prototype.focus = function(slug){
-  if (this.current) {
-    classes(this.current[0]).remove('current');
+  var selected = this.items[slug];
+  if (!selected) throw new Error('Doesn\'t exists `' + slug + '` item.');
+
+  var multi = this.options.multi;
+  var css_selected = classes(selected.get(0));
+  var new_selection = !css_selected.has('current');
+
+  if (new_selection && this.current) {
+    classes(this.items[this.current].get(0)).remove('current');
   }
 
-  this.current = this.items[slug];
-  if (!this.current) throw new Error('Doesn\'t exists `' + slug + '` item.');
-
-  classes(this.current[0]).add('current');
-
-  if (this.options.selectable) {
+  if (this.options.selectable && new_selection) {
     var mtd =  'input' == this.ref.get(0).tagName.toLowerCase() ? 'val' : 'html';
-    this.ref[mtd](o(this.items[slug]).find('a').html());
+    this.ref[mtd](selected.find('a').html());
     this.emit('focus', slug);
   }
-  return this;
+
+  css_selected.add('current');
+  this.current = slug;
 };
 
 /**
