@@ -1,4 +1,14 @@
 
+1.0.0 / 2012-12-19 
+==================
+
+  * docs: add events and mutiple option
+  * core: emit `check` and `uncheck` events
+  * core: add checked item array
+  * core: add multiple selection support
+  * core: set `menu` mode true as default
+  * core: add setter `option` method
+
 0.1.4 / 2012-12-18 
 ==================
 
