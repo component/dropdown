@@ -19,6 +19,7 @@
     <h2>Dropdown</h2>
     <p>Click <a id="dropdown" href="#">here</a> to open an inline dropdown.</p>
     <p>Dropdown menu: <span class="dropdown-link menu1">Fruits</span></p>
+    <p>Dropdown menu (multiple): <span class="dropdown-link multiple">Fruits</span></p>
     <p>No-selectable dropdown menu: <span class="dropdown-link menu2"><em>Select</em></span></p>
     <p>Into input element: <input class="dropdown-link dropdown-input" value ="Fruits" /></p>
 
@@ -50,14 +51,42 @@
               ]
           ]
         , classname: 'custom-menu'
-        , selectable: true
+      });
+
+      // 3 - dropdown menu (multiple)
+      var dropdownMenu = Dropdown('.multiple', {
+          items: [
+              ['apple', '<em>Apple</em>', function(){ console.log('Apple !!') }]
+            , ['orange', '<strong style="color: #f86">orange</strong>']
+            , ['banana']
+            , ['strawberry', function() {
+                  console.log('remove the orange');
+                  dropdownMenu.remove('orange');
+                }
+              ]
+          ]
+        , classname: 'custom-menu'
+        , selectable: false
+        , multiple: true
       });
 
       dropdownMenu.on('focus', function(item) {
-        console.log('select -> ', item);
+        console.log('focus `%s`', item);
       });
 
-      // 3 - no selectable dropdown menu
+      dropdownMenu.on('select', function(item) {
+        console.log('select `%s`', item);
+      });
+
+      dropdownMenu.on('check', function(item, checked) {
+        console.log('check `%s` - checked: ', item, checked);
+      });
+
+      dropdownMenu.on('uncheck', function(item, checked) {
+        console.log('uncheck `%s` - cheched: ', item, checked);
+      });
+
+      // 4 - no selectable dropdown menu
       Dropdown('.menu2', {
           items: [
               ['car']
@@ -67,7 +96,7 @@
         , selectable: false
       });
 
-      // 4 - into an input element
+      // 5 - into an input element
       Dropdown('.dropdown-input', {
           items: [
               ['car']
