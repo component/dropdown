@@ -1,4 +1,10 @@
 
+1.0.1 / 2012-12-19 
+==================
+
+  * core: not show dropdown if it's empty
+  * core: add `clean` method
+
 1.0.0 / 2012-12-19 
 ==================
 
