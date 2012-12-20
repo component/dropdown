@@ -55,7 +55,7 @@ function Dropdown(ref, opts) {
     if (this.options.select) this.focus(this.options.select);
   }
 
-  this.ref.click(this.onclick.bind(this));
+  this.ref.on('click', this.onclick.bind(this, this.ref.get(0)));
   this.on('select', this.focus.bind(this));
 
   this.checked = [];
@@ -75,15 +75,18 @@ Dropdown.prototype.__proto__ = Menu.prototype;
 /**
  * Add click event to reference element
  *
+ * @param {DOM} ref dom reference to target
  * @param {Object} ev event object
  * @api private
  */
 
-Dropdown.prototype.onclick = function(ev){
-  if (o.isEmptyObject(this.items)) return;
-
+Dropdown.prototype.onclick = function(ref, ev){
   ev.preventDefault();
   ev.stopPropagation();
+
+  if (o.isEmptyObject(this.items)) return;
+  if (classes(ref).has('opened')) return this.hide();
+
   var x, y;
 
   if (this.options.menu) {
