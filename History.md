@@ -1,4 +1,9 @@
 
+1.0.2 / 2012-12-19 
+==================
+
+  * core: close dropdown when user click in reference element
+
 1.0.1 / 2012-12-19 
 ==================
 
