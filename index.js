@@ -4,6 +4,7 @@
 
 var Menu = require('menu')
   , classes = require('classes')
+  , inherit = require('inherit')
   , o = require('jquery');
 
 /**
@@ -70,7 +71,7 @@ function Dropdown(ref, opts) {
  * Inherits from `Menu.prototype`.
  */
 
-Dropdown.prototype.__proto__ = Menu.prototype;
+inherit(Dropdown, Menu);
 
 /**
  * Add click event to reference element
@@ -134,8 +135,10 @@ Dropdown.prototype.focus = function(slug){
       this.ref[mtd](selected.find('a').html());
       this.emit('focus', slug);
     }
-    this.checked.push(slug);
-    this.emit('check', slug, this.checked);
+    if (multi) {
+      this.checked.push(slug);
+      this.emit('check', slug, this.checked);
+    }
   }
 
   css_selected.add('current');
