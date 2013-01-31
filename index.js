@@ -135,8 +135,10 @@ Dropdown.prototype.focus = function(slug){
       this.ref[mtd](selected.find('a').html());
       this.emit('focus', slug);
     }
-    this.checked.push(slug);
-    this.emit('check', slug, this.checked);
+    if (multi) {
+      this.checked.push(slug);
+      this.emit('check', slug, this.checked);
+    }
   }
 
   css_selected.add('current');
