@@ -12,6 +12,7 @@
   "dependencies": {
     "component/jquery": "*",
     "component/classes": "*",
+    "component/inherit": "*",
     "component/menu": "*"
   },
   "styles": [
