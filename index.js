@@ -4,6 +4,7 @@
 
 var Menu = require('menu')
   , classes = require('classes')
+  , inherit = require('inherit')
   , o = require('jquery');
 
 /**
@@ -70,7 +71,7 @@ function Dropdown(ref, opts) {
  * Inherits from `Menu.prototype`.
  */
 
-Dropdown.prototype.__proto__ = Menu.prototype;
+inherit(Dropdown, Menu);
 
 /**
  * Add click event to reference element
