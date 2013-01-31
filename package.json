@@ -9,7 +9,8 @@
     "component"
   ],
   "dependencies": {
-    "menu-component": "*"
+    "menu-component": "*",
+    "inherit-component": "*"
   },
   "component": {
     "styles": [
