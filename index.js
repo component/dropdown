@@ -42,7 +42,7 @@ function Dropdown(ref, opts) {
   this.options.items = this.options.items || [];
   this.options.selectable = false !== this.options.selectable;
 
-  var elclasses = classes(this.el.get(0));
+  var elclasses = classes(this.el);
   if (this.options.menu) elclasses.add('dropdown-menu');
   if (this.options.classname) elclasses.add(this.options.classname);
 
