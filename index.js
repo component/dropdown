@@ -113,7 +113,7 @@ Dropdown.prototype.focus = function(slug){
   if (!selected) throw new Error('Doesn\'t exists `' + slug + '` item.');
 
   var multi = this.options.multiple;
-  var css_selected = classes(selected.get(0));
+  var css_selected = classes(selected);
   var new_selection = !css_selected.has('current');
 
   if (this.current) {
@@ -132,7 +132,7 @@ Dropdown.prototype.focus = function(slug){
   if (new_selection) {
     if (this.options.selectable) {
       var mtd =  'input' == this.ref.get(0).tagName.toLowerCase() ? 'val' : 'html';
-      this.ref[mtd](selected.find('a').html());
+      this.ref[mtd](o(selected).find('a').html());
       this.emit('focus', slug);
     }
     if (multi) {
