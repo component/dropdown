@@ -34,7 +34,7 @@
         .option('selectable', false)
         .option('menu', false)
         .add('Add item', function(){ n++; dropdown.add('new ' + n + ' item'); })
-        .add('Edit item', 'Edit <em>item</em>', function(){ console.log('edit'); })
+        .add('edit-item', 'Edit <em>item</em>', function(){ console.log('edit'); })
         .add('Remove "Add item"', function(){ dropdown.remove('add-item'); })
         .on('select', function(slug) { console.log(slug); })
 
@@ -104,4 +104,4 @@
 
     </script>
   </body>
-</html> 
+</html>
