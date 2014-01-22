@@ -56,13 +56,13 @@ function Dropdown(ref, opts) {
     if (this.options.select) this.focus(this.options.select);
   }
 
-  this.ref.on('click', this.onclick.bind(this, this.ref.get(0)));
+  this.ref.on('click', this.onclick.bind(this, this.ref[0]));
   this.on('select', this.focus.bind(this));
 
   this.checked = [];
 
   // reference element class handler
-  var refclasses = classes(ref.get(0));
+  var refclasses = classes(ref[0]);
   this.on('show', function(){ refclasses.add('opened'); });
   this.on('hide', function(){ refclasses.remove('opened'); });
 }
@@ -125,13 +125,13 @@ Dropdown.prototype.focus = function(slug){
         return this.emit('uncheck', this.current, this.checked);
       }
     } else if (new_selection) {
-      classes(this.items[this.current].get(0)).remove('current');
+      classes(this.items[this.current]).remove('current');
     }
   }
 
   if (new_selection) {
     if (this.options.selectable) {
-      var mtd =  'input' == this.ref.get(0).tagName.toLowerCase() ? 'val' : 'html';
+      var mtd =  'input' == this.ref[0].tagName.toLowerCase() ? 'val' : 'html';
       this.ref[mtd](o(selected).find('a').html());
       this.emit('focus', slug);
     }
