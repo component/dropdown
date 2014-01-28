@@ -2,7 +2,8 @@
  * Module dependencies.
  */
 
-var Menu = require('menu')
+var bind = require('bind')
+  , Menu = require('menu')
   , classes = require('classes')
   , inherit = require('inherit')
   , o = require('jquery');
@@ -56,8 +57,8 @@ function Dropdown(ref, opts) {
     if (this.options.select) this.focus(this.options.select);
   }
 
-  this.ref.on('click', this.onclick.bind(this, this.ref[0]));
-  this.on('select', this.focus.bind(this));
+  this.ref.on('click', bind(this, this.onclick, this.ref[0]));
+  this.on('select', bind(this, this.focus));
 
   this.checked = [];
 

@@ -11,9 +11,10 @@
   ],
   "dependencies": {
     "component/jquery": "*",
+    "component/bind": "*",
     "component/classes": "*",
     "component/inherit": "*",
-    "component/menu": "*"
+    "component/menu": "ie8_compat"
   },
   "styles": [
     "dropdown.css"

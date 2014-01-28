@@ -33,9 +33,9 @@
       var dropdown = Dropdown('#dropdown')
         .option('selectable', false)
         .option('menu', false)
-        .add('Add item', function(){ n++; dropdown.add('new ' + n + ' item'); })
-        .add('edit-item', 'Edit <em>item</em>', function(){ console.log('edit'); })
-        .add('Remove "Add item"', function(){ dropdown.remove('add-item'); })
+        .add('add', function(){ n++; dropdown.add('new ' + n + ' item'); })
+        .add('edit', 'Edit <em>item</em>', function(){ console.log('edit'); })
+        .add('remove', 'Remove "Add item"', function(){ dropdown.remove('add'); })
         .on('select', function(slug) { console.log(slug); })
 
       // 2 - dropdown menu
