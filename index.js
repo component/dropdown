@@ -5,7 +5,7 @@
 var Menu = require('menu');
 var classes = require('classes');
 var inherit = require('inherit');
-var o = require('jquery');
+var dom = require('dom');
 
 /**
  * Expose `Dropdown`.
