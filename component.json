@@ -10,8 +10,7 @@
     "component"
   ],
   "dependencies": {
-    "component/jquery": "*",
-    "component/classes": "*",
+    "component/dom": "*",
     "component/inherit": "*",
     "component/menu": "*"
   },
