@@ -1,4 +1,11 @@
 
+1.0.3 / 2014-02-03 
+==================
+
+  * Remove jQuery
+  * Component/dom and component/menu related fixes
+  * Updated to reflext component/menu changes
+
 1.0.2 / 2012-12-19 
 ==================
 
