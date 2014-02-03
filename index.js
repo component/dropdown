@@ -3,8 +3,9 @@
  */
 
 var Menu = require('menu');
-var classes = require('classes');
 var inherit = require('inherit');
+var isempty = require('isempty');
+var offset = require('offset');
 var dom = require('dom');
 
 /**
@@ -42,11 +43,12 @@ function Dropdown(ref, opts) {
   this.options.items = this.options.items || [];
   this.options.selectable = false !== this.options.selectable;
 
-  var elclasses = classes(this.el);
-  if (this.options.menu) elclasses.add('dropdown-menu');
-  if (this.options.classname) elclasses.add(this.options.classname);
+  var el = dom(this.el);
 
-  var ref = this.ref = o(ref);
+  if (this.options.menu) el.addClass('dropdown-menu');
+  if (this.options.classname) el.addClass(this.options.classname);
+
+  ref = this.ref = dom(ref);
   if (this.options.items.length) {
     for (var i = 0; i < this.options.items.length; i++) {
       var item = this.options.items[i];
@@ -62,9 +64,8 @@ function Dropdown(ref, opts) {
   this.checked = [];
 
   // reference element class handler
-  var refclasses = classes(ref[0]);
-  this.on('show', function(){ refclasses.add('opened'); });
-  this.on('hide', function(){ refclasses.remove('opened'); });
+  this.on('show', function(){ ref.addClass('opened'); });
+  this.on('hide', function(){ ref.removeClass('opened'); });
 }
 
 /**
@@ -85,14 +86,19 @@ Dropdown.prototype.onclick = function(ref, ev){
   ev.preventDefault();
   ev.stopPropagation();
 
-  if (o.isEmptyObject(this.items)) return;
-  if (classes(ref).has('opened')) return this.hide();
+  ref = dom(ref);
+
+  if (isempty(this.items)) return;
+  if (ref.hasClass('opened')) return this.hide();
 
   var x, y;
 
   if (this.options.menu) {
-    var p = this.ref.offset();
-    x = p.left, y = p.top + this.ref.outerHeight();
+    var p = offset(this.ref[0]);
+    var dimms = this.ref[0].getBoundingClientRect();
+
+    x = p.left;
+    y = p.top + dimms.height;
   } else {
     x = ev.pageX, y = ev.pageY;
   }
@@ -110,29 +116,30 @@ Dropdown.prototype.onclick = function(ref, ev){
 
 Dropdown.prototype.focus = function(slug){
   var selected = this.items[slug];
+
   if (!selected) throw new Error('Doesn\'t exists `' + slug + '` item.');
+  selected = dom(selected);
 
   var multi = this.options.multiple;
-  var css_selected = classes(selected);
-  var new_selection = !css_selected.has('current');
+  var new_selection = !selected.hasClass('current');
 
   if (this.current) {
     if (multi) {
       if (!new_selection) {
-        css_selected.remove('current');
+        selected.removeClass('current');
         var ind = this.checked.indexOf(this.current);
         this.checked.splice(ind, 1);
         return this.emit('uncheck', this.current, this.checked);
       }
     } else if (new_selection) {
-      classes(this.items[this.current]).remove('current');
+      dom(this.items[this.current]).removeClass('current');
     }
   }
 
   if (new_selection) {
     if (this.options.selectable) {
       var mtd =  'input' == this.ref[0].tagName.toLowerCase() ? 'val' : 'html';
-      this.ref[mtd](o(selected).find('a').html());
+      this.ref[mtd](selected.find('a').html());
       this.emit('focus', slug);
     }
     if (multi) {
@@ -141,7 +148,7 @@ Dropdown.prototype.focus = function(slug){
     }
   }
 
-  css_selected.add('current');
+  selected.addClass('current');
   this.current = slug;
 };
 
