@@ -14,5 +14,6 @@ ul.dropdown-menu li.current {
 }
 
 ul.menu.dropdown-menu {
+  position: absolute;
   margin-top: -1px;
 }
