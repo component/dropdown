@@ -11,6 +11,8 @@
   ],
   "dependencies": {
     "component/dom": "*",
+    "timoxley/offset" : "*",
+    "component/isempty": "*",
     "component/inherit": "*",
     "component/menu": "*"
   },
