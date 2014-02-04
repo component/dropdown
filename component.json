@@ -10,7 +10,7 @@
     "component"
   ],
   "dependencies": {
-    "component/dom": "*",
+    "component/dom": "1.0.0",
     "timoxley/offset" : "*",
     "component/isempty": "*",
     "component/inherit": "*",
