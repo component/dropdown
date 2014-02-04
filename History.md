@@ -1,4 +1,10 @@
 
+1.0.4 / 2014-02-04 
+==================
+
+  * set dom dependency version
+  * set position: absolute to dropdown menu
+
 1.0.3 / 2014-02-03 
 ==================
 
