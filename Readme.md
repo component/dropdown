@@ -104,6 +104,14 @@ var dropdown = Dropdown('.dropdown-link', {
   dropdown.focus('banana');
 ```
 
+### Dropdown#select(slug):
+
+  Select dropdown with the item given. it doesn't emit `focus` event.
+
+```js
+  dropdown.focus('banana');
+```
+
 ## License
 
   (The MIT License)
