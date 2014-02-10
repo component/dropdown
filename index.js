@@ -114,7 +114,7 @@ Dropdown.prototype.onclick = function(ref, ev){
  * @api pubic
  */
 
-Dropdown.prototype.focus = function(slug){
+Dropdown.prototype.focus = function(slug, select){
   var selected = this.items[slug];
 
   if (!selected) throw new Error('Doesn\'t exists `' + slug + '` item.');
@@ -129,6 +129,7 @@ Dropdown.prototype.focus = function(slug){
         selected.removeClass('current');
         var ind = this.checked.indexOf(this.current);
         this.checked.splice(ind, 1);
+        if (select) return;
         return this.emit('uncheck', this.current, this.checked);
       }
     } else if (new_selection) {
@@ -140,16 +141,27 @@ Dropdown.prototype.focus = function(slug){
     if (this.options.selectable) {
       var mtd =  'input' == this.ref[0].tagName.toLowerCase() ? 'val' : 'html';
       this.ref[mtd](selected.find('a').html());
-      this.emit('focus', slug);
+      if (!select) this.emit('focus', slug);
     }
     if (multi) {
       this.checked.push(slug);
-      this.emit('check', slug, this.checked);
+      if (!select) this.emit('check', slug, this.checked);
     }
   }
 
   selected.addClass('current');
   this.current = slug;
+};
+
+/**
+ * Select an item
+ *
+ * @param {String} slug option slug
+ * @api public
+ */
+
+Dropdown.prototype.select = function(slug){
+  this.focus(slug, true);
 };
 
 /**
