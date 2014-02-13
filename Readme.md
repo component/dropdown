@@ -63,7 +63,7 @@ dropdown
   Create a new `Dropdown` associated to `ref` element. Also support the follow
   options:
 
-  - menu: `{Boolean}` Set menu behaviur (default true).
+  - menu: `{String}` Set menu behaviur (default 'left').
   - items: `{Array}` Array of initial items.
   - select: `{String}` Initial focused item
   - selectable: `{Boolean}` Defines if dropdown is selectable (default true)
@@ -73,7 +73,7 @@ dropdown
 ```js
 var Dropdown = require('dropdown');
 var dropdown = Dropdown('.dropdown-link', {
-    menu: true
+    menu: 'right'
   , items: [
         ['apple', function (){ console.log('It\'s an Apple!') }]
       , ['orange', '<em>orange</em>']
