@@ -205,10 +205,11 @@ Dropdown.prototype.empty = function(){
 Dropdown.prototype.dims = function(){
   var el = dom(this.menu);
   el.css('visibility', 'hidden');
-  this.show();
+  el.css('display', 'block');
 
   var s = el[0].getBoundingClientRect();
-  this.hide();
+
+  el.css('display', 'none');
   el.css('visibility', 'visible');
   return s;
 };
