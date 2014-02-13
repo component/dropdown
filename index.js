@@ -26,7 +26,7 @@ module.exports = Dropdown;
  * @param {Object} options:
  *
  *   - items:  {Object} array of the initial items
- *   - menu:   {Boolean} menu mode (default true)
+ *   - menu:   {String} menu mode (default 'left')
  *   - select: {String} initial item_id select into dropdown
  *   - selectable: {Boolean} defines if dropdown is seloectable (default true)
  *   - muliple: allow check more than one item
@@ -38,10 +38,10 @@ function Dropdown(ref, opts) {
   if (!(this instanceof Dropdown)) return new Dropdown(ref, opts);
   Menu.call(this, this.dropdown);
 
-  this.options = opts || {};
-  this.options.menu = false !== this.options.menu;
-  this.options.items = this.options.items || [];
-  this.options.selectable = false !== this.options.selectable;
+  this.options = opts = opts || {};
+  this.options.menu = false === opts.menu ? false : (opts.menu || 'left');
+  this.options.items = opts.items || [];
+  this.options.selectable = false !== opts.selectable;
 
   var el = dom(this.el);
 
@@ -95,10 +95,14 @@ Dropdown.prototype.onclick = function(ref, ev){
 
   if (this.options.menu) {
     var p = offset(this.ref[0]);
-    var dimms = this.ref[0].getBoundingClientRect();
+    var dims = this.ref[0].getBoundingClientRect();
 
     x = p.left;
-    y = p.top + dimms.height;
+    y = p.top + dims.height;
+
+    if ('right' == this.options.menu) {
+      x += dims.width - this.dims().width;
+    }
   } else {
     x = ev.pageX, y = ev.pageY;
   }
@@ -190,4 +194,21 @@ Dropdown.prototype.empty = function(){
   this.items = [];
   this.checked = [];
   this.current = null;
+};
+/**
+ * Get Menu dims
+ *
+ * @return {Object}
+ * @api public
+ */
+
+Dropdown.prototype.dims = function(){
+  var el = dom(this.menu);
+  el.css('visibility', 'hidden');
+  this.show();
+
+  var s = el[0].getBoundingClientRect();
+  this.hide();
+  el.css('visibility', 'visible');
+  return s;
 };
