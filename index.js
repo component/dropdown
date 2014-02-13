@@ -108,6 +108,7 @@ Dropdown.prototype.onclick = function(ref, ev){
   }
 
   this.moveTo(x, y);
+  this.coor = { x: x, y: y };
   this.show();
 };
 
