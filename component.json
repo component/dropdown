@@ -2,7 +2,7 @@
   "name": "dropdown",
   "description": "Dropdown component",
   "repo": "component/dropdown",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "author": "Damian Suarez <rdsuarez@gmail.com>",
   "twitter": "@retrofox",
   "keywords": [
@@ -10,7 +10,7 @@
     "component"
   ],
   "dependencies": {
-    "component/dom": "1.0.1",
+    "component/dom": "1.0.2",
     "timoxley/offset" : "*",
     "component/isempty": "*",
     "component/inherit": "*",
