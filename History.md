@@ -1,4 +1,10 @@
 
+1.0.11 / 2014-03-04 
+==================
+
+  * cmp: bump menu@0.1.2 and dom@1.0.4 - bump@1.0.11
+  * package: remove "readme", "_id" and "_from" fields
+
 1.0.10 / 2014-02-26 
 ==================
 
