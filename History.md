@@ -1,4 +1,10 @@
 
+2.0.0 / 2014-07-14
+==================
+
+ * Use low-level components instead of "component/dom" (#34, @TooTallNate)
+ * History: consistent output
+
 1.0.11 / 2014-03-04
 ===================
 

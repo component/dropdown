@@ -1,7 +1,7 @@
 {
   "name": "component-dropdown",
   "description": "Dropdown component",
-  "version": "1.0.11",
+  "version": "2.0.0",
   "author": "Damian Suarez <rdsuarez@gmail.com>",
   "keywords": [
     "browser",
@@ -17,7 +17,7 @@
     "component-inherit": "0.0.3",
     "component-menu": "1.0.0",
     "document-offset": "1.0.2",
-    "component-query" : "0.0.3"
+    "component-query": "0.0.3"
   },
   "component": {
     "styles": [

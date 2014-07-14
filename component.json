@@ -2,7 +2,7 @@
   "name": "dropdown",
   "repo": "component/dropdown",
   "description": "Dropdown component",
-  "version": "1.0.11",
+  "version": "2.0.0",
   "author": "Damian Suarez <rdsuarez@gmail.com>",
   "keywords": [
     "browser",
@@ -17,8 +17,8 @@
     "component/isempty": "0.0.1",
     "component/inherit": "0.0.3",
     "component/menu": "1.0.0",
-    "timoxley/offset" : "1.0.2",
-    "component/query" : "0.0.3"
+    "timoxley/offset": "1.0.2",
+    "component/query": "0.0.3"
   },
   "styles": [
     "dropdown.css"
