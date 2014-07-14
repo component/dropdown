@@ -1,20 +1,24 @@
 {
   "name": "dropdown",
-  "description": "Dropdown component",
   "repo": "component/dropdown",
+  "description": "Dropdown component",
   "version": "1.0.11",
   "author": "Damian Suarez <rdsuarez@gmail.com>",
-  "twitter": "@retrofox",
   "keywords": [
+    "browser",
     "dropdown",
     "component"
   ],
   "dependencies": {
-    "component/dom": "1.0.4",
-    "timoxley/offset" : "*",
-    "component/isempty": "*",
-    "component/inherit": "*",
-    "component/menu": "0.1.2"
+    "component/classes": "1.2.1",
+    "component/css": "0.0.6",
+    "component/event": "0.1.4",
+    "retrofox/is-array": "1.0.1",
+    "component/isempty": "0.0.1",
+    "component/inherit": "0.0.3",
+    "component/menu": "1.0.0",
+    "timoxley/offset" : "1.0.2",
+    "component/query" : "0.0.3"
   },
   "styles": [
     "dropdown.css"
