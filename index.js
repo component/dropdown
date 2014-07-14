@@ -1,15 +1,20 @@
+
 /**
  * Module dependencies.
  */
 
-var Menu = require('menu');
-var inherit = require('inherit');
+var classes = require('classes');
+var css = require('css');
+var event = require('event');
+var isArray = require('is-array');
 var isempty = require('isempty');
+var inherit = require('inherit');
+var Menu = require('menu');
 var offset = require('offset');
-var dom = require('dom');
+var query = require('query');
 
 /**
- * Expose `Dropdown`.
+ * Export `Dropdown` constructor.
  */
 
 module.exports = Dropdown;
@@ -31,41 +36,41 @@ module.exports = Dropdown;
  *   - selectable: {Boolean} defines if dropdown is seloectable (default true)
  *   - muliple: allow check more than one item
  *
- * @api public
+ * @public
  */
 
 function Dropdown(ref, opts) {
   if (!(this instanceof Dropdown)) return new Dropdown(ref, opts);
-  Menu.call(this, this.dropdown);
+  Menu.call(this);
 
   this.options = opts = opts || {};
   this.options.menu = false === opts.menu ? false : (opts.menu || 'left');
   this.options.items = opts.items || [];
   this.options.selectable = false !== opts.selectable;
 
-  var el = dom(this.el);
+  // add classes to base "el"
+  var elClasses = classes(this.el);
+  if (this.options.menu) elClasses.add('dropdown-menu');
+  if (this.options.classname) elClasses.add(this.options.classname);
 
-  if (this.options.menu) el.addClass('dropdown-menu');
-  if (this.options.classname) el.addClass(this.options.classname);
+  this.ref = 'string' == typeof ref ? query(ref) : ref;
+  event.bind(this.ref, 'click', this.onclick.bind(this));
 
-  ref = this.ref = dom(ref);
   if (this.options.items.length) {
     for (var i = 0; i < this.options.items.length; i++) {
       var item = this.options.items[i];
-      item = item instanceof Array ? item : [item, null, null];
+      item = isArray(item) ? item : [ item, null, null ];
       this.add(item[0], item[1], item[2]);
     }
     if (this.options.select) this.focus(this.options.select);
   }
 
-  this.ref.on('click', this.onclick.bind(this, this.ref[0]));
-  this.on('select', this.focus.bind(this));
-
   this.checked = [];
 
   // reference element class handler
-  this.on('show', function(){ ref.addClass('opened'); });
-  this.on('hide', function(){ ref.removeClass('opened'); });
+  this.on('select', this.focus.bind(this));
+  this.on('show', this.addOpenedClass.bind(this));
+  this.on('hide', this.removeOpenedClass.bind(this));
 }
 
 /**
@@ -75,27 +80,46 @@ function Dropdown(ref, opts) {
 inherit(Dropdown, Menu);
 
 /**
- * Add click event to reference element
+ * Adds "opened" class to `ref`.
  *
- * @param {DOM} ref dom reference to target
+ * @private
+ */
+
+Dropdown.prototype.addOpenedClass = function(){
+  classes(this.ref).add('opened');
+};
+
+/**
+ * Removes "opened" class from `ref`.
+ *
+ * @private
+ */
+
+Dropdown.prototype.removeOpenedClass = function(){
+  classes(this.ref).remove('opened');
+};
+
+/**
+ * "click" event handler for the `ref`.
+ *
  * @param {Object} ev event object
  * @api private
  */
 
-Dropdown.prototype.onclick = function(ref, ev){
+Dropdown.prototype.onclick = function(ev){
   ev.preventDefault();
   ev.stopPropagation();
 
-  ref = dom(ref);
+  var ref = this.ref;
 
   if (isempty(this.items)) return;
-  if (ref.hasClass('opened')) return this.hide();
+  if (classes(ref).has('opened')) return this.hide();
 
   var x, y;
 
   if (this.options.menu) {
-    var p = offset(this.ref[0]);
-    var dims = this.ref[0].getBoundingClientRect();
+    var p = offset(ref);
+    var dims = ref.getBoundingClientRect();
 
     x = p.left;
     y = p.top + dims.height;
@@ -122,30 +146,34 @@ Dropdown.prototype.onclick = function(ref, ev){
 Dropdown.prototype.focus = function(slug, select){
   var selected = this.items[slug];
 
-  if (!selected) throw new Error('Doesn\'t exists `' + slug + '` item.');
-  selected = dom(selected);
+  if (!selected) throw new Error('Item: `' + slug + '` does not exist.');
+  var selectedClasses = classes(selected);
 
   var multi = this.options.multiple;
-  var new_selection = !selected.hasClass('current');
+  var newSelection = !selectedClasses.has('current');
 
   if (this.current) {
     if (multi) {
-      if (!new_selection) {
-        selected.removeClass('current');
+      if (!newSelection) {
+        selectedClasses.remove('current');
         var ind = this.checked.indexOf(this.current);
         this.checked.splice(ind, 1);
         if (select) return;
         return this.emit('uncheck', this.current, this.checked);
       }
-    } else if (new_selection) {
-      dom(this.items[this.current]).removeClass('current');
+    } else if (newSelection) {
+      classes(this.items[this.current]).remove('current');
     }
   }
 
-  if (new_selection) {
+  if (newSelection) {
     if (this.options.selectable) {
-      var mtd =  'input' == this.ref[0].tagName.toLowerCase() ? 'val' : 'html';
-      this.ref[mtd](selected.find('a').html());
+      var a = query('a', selected);
+      if ('input' == this.ref.tagName.toLowerCase()) {
+        this.ref.value = a.innerHTML;
+      } else {
+        this.ref.innerHTML = a.innerHTML;
+      }
       if (!select) this.emit('focus', slug);
     }
     if (multi) {
@@ -154,7 +182,7 @@ Dropdown.prototype.focus = function(slug, select){
     }
   }
 
-  selected.addClass('current');
+  selectedClasses.add('current');
   this.current = slug;
 };
 
@@ -189,13 +217,11 @@ Dropdown.prototype.option = function(k, v){
  */
 
 Dropdown.prototype.empty = function(){
-  for (var k in this.items) {
-    this.items[k].remove();
-  }
-  this.items = [];
+  this.clear();
   this.checked = [];
   this.current = null;
 };
+
 /**
  * Get Menu dims
  *
@@ -204,17 +230,19 @@ Dropdown.prototype.empty = function(){
  */
 
 Dropdown.prototype.dims = function(){
-  var el = dom(this.menu);
-  var prev = el.css('display');
+  var el = this.el;
+
+  var prev = css(el, 'display');
 
   if ('none' == prev) {
-    el.css('visibility', 'hidden');
-    el.css('display', 'block');
+    css(el, 'visibility', 'hidden');
+    css(el, 'display', 'block');
   }
 
-  var s = el[0].getBoundingClientRect();
+  var s = el.getBoundingClientRect();
 
-  el.css('display', prev);
-  el.css('visibility', 'visible');
+  css(el, 'display', prev);
+  css(el, 'visibility', 'visible');
+
   return s;
 };
