@@ -217,10 +217,7 @@ Dropdown.prototype.option = function(k, v){
  */
 
 Dropdown.prototype.empty = function(){
-  for (var k in this.items) {
-    this.items[k].remove();
-  }
-  this.items = [];
+  this.clear();
   this.checked = [];
   this.current = null;
 };
