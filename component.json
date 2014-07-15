@@ -14,7 +14,7 @@
     "component/css": "0.0.6",
     "component/event": "0.1.4",
     "retrofox/is-array": "1.0.1",
-    "component/isempty": "0.0.1",
+    "ianstormtaylor/is-empty": "0.0.1",
     "component/inherit": "0.0.3",
     "component/menu": "1.0.0",
     "timoxley/offset": "1.0.2",

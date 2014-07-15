@@ -7,7 +7,7 @@ var classes = require('classes');
 var css = require('css');
 var event = require('event');
 var isArray = require('is-array');
-var isempty = require('isempty');
+var isEmpty = require('is-empty');
 var inherit = require('inherit');
 var Menu = require('menu');
 var offset = require('offset');
@@ -112,7 +112,7 @@ Dropdown.prototype.onclick = function(ev){
 
   var ref = this.ref;
 
-  if (isempty(this.items)) return;
+  if (isEmpty(this.items)) return;
   if (classes(ref).has('opened')) return this.hide();
 
   var x, y;
