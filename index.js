@@ -131,7 +131,7 @@ Dropdown.prototype.onclick = function(ev){
     x = ev.pageX, y = ev.pageY;
   }
 
-  this.moveTo(x, y);
+  this.moveTo(x + 'px', y + 'px');
   this.coor = { x: x, y: y };
   this.show();
 };
